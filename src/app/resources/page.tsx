@@ -3,8 +3,8 @@ import ResourceCard from './components/ResourceCard'
 
 const page = () => {
   return (
-    <div className='flex w-full items-center justify-center h-full '>
-      <div className='grid grid-cols-3 gap-x-8 gap-y-6'>
+    <div className='flex container w-full items-center justify-center h-full '>
+      <div className='grid grid-cols-3 gap-x-8 gap-y-6 w-full'>
       <ResourceCard />
       <ResourceCard />
       <ResourceCard />

@@ -3,18 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MdChevronRight } from "react-icons/md";
-import { RiSlashCommands2 } from "react-icons/ri";
-import { poppins } from "@/app/(ui)/fonts";
+import { poppins } from "@/app/ui/fonts";
 const Header = () => {
   return (
     <div className="w-full py-6 bg-[#131313]">
       <div className="container flex justify-between">
         <div className=" flex flex-col items-center gap-4  md:flex-row">
-          <Image src="/assets/logo.png" alt="alt" width={120} height={80} />
-          <Link href="/" className={`${poppins.className} font-extralight text-base`}>
+          <Link href="href">
+            <Image src="/assets/logo.png" alt="alt" width={120} height={120} />
+          </Link>
+          <Link
+            href="/"
+            className={`${poppins.className} font-extralight text-base`}
+          >
             Freelance
           </Link>
-          <Link href="/" className={`${poppins.className} font-extralight text-base`}>Inspiration</Link>
+          <Link
+            href="/"
+            className={`${poppins.className} font-extralight text-base`}
+          >
+            Inspiration
+          </Link>
         </div>
         <div className="flex gap-4 items-center">
           <Link
@@ -31,8 +40,18 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          <Link href="/" className={`${poppins.className} font-extralight text-base`}>NewsLetter</Link>
-          <Link href="/" className={`${poppins.className} font-extralight text-base`}>Sponser</Link>
+          <Link
+            href="/"
+            className={`${poppins.className} font-extralight text-base`}
+          >
+            NewsLetter
+          </Link>
+          <Link
+            href="/"
+            className={`${poppins.className} font-extralight text-base`}
+          >
+            Sponser
+          </Link>
           <Button
             variant={"outline"}
             className="bg-[#131313] rounded-full px-6 py-1 h-fit text-xs"

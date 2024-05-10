@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
+import { poppins } from "@/app/ui/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} text-white bg-black`}>
+      <body className={`${poppins.className} text-white bg-black`}>
         <Header />
         <div className="flex h-screen">
         <SideNav />
