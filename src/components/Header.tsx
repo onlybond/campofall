@@ -6,7 +6,7 @@ import { MdChevronRight } from "react-icons/md";
 import { poppins } from "@/app/ui/fonts";
 const Header = () => {
   return (
-    <div className="w-full py-6 bg-[#131313]">
+    <div className="w-full sticky top-0 py-6 bg-[#131313]">
       <div className="container flex justify-between">
         <div className=" flex flex-col items-center gap-4  md:flex-row">
           <Link href="href">

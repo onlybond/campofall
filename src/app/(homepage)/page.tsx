@@ -49,13 +49,6 @@ export default function Home() {
           <ResourceCard />
         </div>
       </div>
-      <div className="flex flex-col gap-5 w-full">
-        <div className="flex gap-y-4 items-center w-full justify-between">
-          <h1 className="text-6xl font-thin">
-            <span className="font-semibold">All</span> Components
-          </h1>
-        </div>
-      </div>
     </div>
   );
 }
