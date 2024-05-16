@@ -6,7 +6,6 @@ import React from "react";
 import clsx from "clsx";
 const SideNav = () => {
   const path = usePathname();
-  console.log(path);
   return (
     <div className="w-5vw h-full">
       <div className="flex flex-col fixed items-center gap-8 px-10 justify-center h-full ">
