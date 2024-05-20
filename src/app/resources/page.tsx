@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ResourceCard from "./components/ResourceCard";
 import Filters from "./components/Filters";
 const page = () => {
