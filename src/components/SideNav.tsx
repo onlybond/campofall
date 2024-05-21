@@ -11,8 +11,6 @@ const SideNav = () => {
       <div className="flex flex-col fixed items-center gap-8 px-10 justify-center h-full ">
         <Link href="/resources" className={`${montserrat.className} rotate-180 uppercase ${path === '/resources' ? 'text-[#F37121]' : ''}` } style={{
           writingMode:"vertical-lr"}}>Resource Links</Link>
-        <Link href="/Components" className={`${montserrat.className} rotate-180 uppercase ${path === '/Components' ? 'text-[#F37121]' : ''}`} style={{
-          writingMode:"vertical-lr"}}>Components</Link>
         <Link href="/" className={`${montserrat.className} rotate-180 uppercase  ${path === '/' ? 'text-[#F37121]' : ''}`} style={{
           writingMode:"vertical-lr"}}>Homepage</Link>
       </div>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MdChevronRight } from "react-icons/md";
 import { poppins } from "@/app/ui/fonts";
-import { UserButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 const Header = () => {
   return (
@@ -63,7 +62,6 @@ const Header = () => {
               Join Us <MdChevronRight className="pl-1 w-5 h-5" />
             </Button>
           </Link>
-          <UserButton />
         </div>
       </div>
     </div>

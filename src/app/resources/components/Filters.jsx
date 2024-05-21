@@ -2,9 +2,8 @@ import React from "react";
 
 const Filters = () => {
   return (
-    <div className=" rounded-lg shadow-lg absolute  ">
+    <div className="w-full bg-white">
       filters
-      <div className="w-full h-full bg-red-500"></div>
     </div>
   );
 };
