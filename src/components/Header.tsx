@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MdChevronRight } from "react-icons/md";
 import { poppins } from "@/app/ui/fonts";
+import { redirect } from "next/navigation";
 const Header = () => {
   return (
     <div className="w-full sticky top-0 py-6 bg-[#131313]">
@@ -52,12 +54,14 @@ const Header = () => {
           >
             Sponser
           </Link>
-          <Button
-            variant={"outline"}
-            className="bg-[#131313] rounded-full px-6 py-1 h-fit text-xs"
-          >
-            Submit <MdChevronRight className="pl-1 w-5 h-5" />
-          </Button>
+          <Link href={"/sign-up"}>
+            <Button
+              variant={"outline"}
+              className="bg-[#131313] rounded-full px-6 py-1 h-fit text-xs"
+            >
+              Join Us <MdChevronRight className="pl-1 w-5 h-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -9,8 +9,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Campofall",
-  description: "A ToolKit for Designers and Developers",
+  title: "CAMPofall - Your Design Resource Hub",
+  description: "Join the Campofall community and connect with fellow designers and developers. Share your work, get feedback, and collaborate on exciting projects. ",
 };
 
 export default function RootLayout({
@@ -19,7 +19,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl={"/"}>
       <html lang="en">
         <body className={`${poppins.className} text-white bg-black`}>
           <Header />
@@ -29,6 +28,5 @@ export default function RootLayout({
           </div>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

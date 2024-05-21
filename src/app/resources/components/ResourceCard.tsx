@@ -3,7 +3,15 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { RiShareBoxLine } from "react-icons/ri";
 import Link from "next/link";
-const ResourceCard = () => {
+
+interface ResourceCardProps {
+  title:string;
+  description:string;
+  link:string;
+}
+
+const ResourceCard = (
+) => {
   return (
     <div className="bg-[#131313] w-auto h-44 relative rounded-md overflow-hidden">
       <div className="p-4 space-y-2">
