@@ -11,7 +11,7 @@ export default function Home() {
         <div className="space-y-10 py-10">
           <div className="tracking-widest space-y-10">
             <h1 className="text-7xl font-thin">
-              <span className="font-normal">Designing</span> a Better
+              <span className="font-normal">Designin</span> a Better
             </h1>
             <h1 className="text-7xl font-thin">
               <span className="font-normal">World</span> Today
