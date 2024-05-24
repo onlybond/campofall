@@ -3,20 +3,19 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ResourceCard from "../resources/components/ResourceCard";
-import Heroanimation from './components/Heroanimation'
-export default async function  Home() {
+import Heroanimation from "./components/Heroanimation";
+export default async function Home() {
   return (
     <div className="flex w-screen container flex-col ">
-      <div className="flex justify-between items-center h-full">
-        <div className="relative">
-          <Heroanimation/>
-        </div>
+      <div className="flex justify-between items-center h-[85dvh] py-6  ">
+        <Image src="/assets/heroImg.png" className="-z-10 object-cover top-16 absolute inset-0" alt="alt" width={1920} height={1080} />
+        {/* <div className="relative">
+          <Heroanimation />
+        </div> */}
         <div className="space-y-20 py-10">
           <div className="tracking-widest space-y-10">
             <h1 className="text-7xl font-thin">
-
-              <span className="font-normal">Designin</span> a Bette
-
+              <span className="font-normal">Designing</span> Together
             </h1>
             <h1 className="text-7xl font-thin">
               <span className="font-normal">Thrive</span> in the{" "}
@@ -40,7 +39,7 @@ export default async function  Home() {
               </span>
             </h1>
           </div>
-          <div className="text-2xl font-thin">
+          <div className="text-2xl font-extralight">
             <p className="text-primary">
               Connect, collaborate, and find the resources you need to elevate
             </p>
@@ -48,7 +47,7 @@ export default async function  Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 w-full h-fit bg-black">
+      <div className="flex flex-col gap-5 py-6 h-fit">
         <div className="flex gap-y-4 items-center w-full justify-between">
           <h1 className="text-6xl font-thin">
             <span className="font-semibold">Resource</span> Links
@@ -60,9 +59,9 @@ export default async function  Home() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-          <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          <ResourceCard title="test1" description="Lorem" link="" tags={[]} type=""/>
+          <ResourceCard title="" description="" link="" tags={[]} type=""/>
+          <ResourceCard title="" description="" link="" tags={[]} type=""/>
         </div>
       </div>
     </div>

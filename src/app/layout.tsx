@@ -20,9 +20,9 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="en">
-        <body className={`${poppins.className} text-white bg-black`}>
+        <body className={`${poppins.className} text-white bg-black flex flex-col`}>
           <Header />
-          <div className="flex h-screen">
+          <div className="flex">
             <SideNav />
             {children}
           </div>
