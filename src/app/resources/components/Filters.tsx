@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import Tags from "./Tag";
-import { resource } from "../page";
 const Filters = () => {
   return (
     <div className="w-full fixed p-4 z-10">

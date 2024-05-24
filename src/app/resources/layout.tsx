@@ -1,5 +1,5 @@
 "use client"
-import { use, type ReactNode } from "react";
+import {  ReactNode } from "react";
 import Filters from "./components/Filters";
 
 type LayoutProps = {
