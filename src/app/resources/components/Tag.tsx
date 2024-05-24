@@ -28,7 +28,6 @@ const Tags = ({ label }: TagProps) => {
           setTypes(tags);
           setSelected(new Array(tags.length).fill(false)); // Initialize selected state
         }
-        console.log(types);
       });
   }, []);
 
