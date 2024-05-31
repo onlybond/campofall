@@ -8,10 +8,9 @@ export default async function Home() {
   return (
     <div className="flex w-screen container flex-col ">
       <div className="flex justify-between items-center h-[85dvh] py-6  ">
-        <Image src="/assets/heroImg.png" className="-z-10 object-cover top-16 absolute inset-0" alt="alt" width={1920} height={1080} />
-        {/* <div className="relative">
+        <div className="absolute inset-0 -z-[2] bg-[#252524] overflow-hidden">
           <Heroanimation />
-        </div> */}
+        </div>
         <div className="space-y-20 py-10">
           <div className="tracking-widest space-y-10">
             <h1 className="text-7xl font-thin">

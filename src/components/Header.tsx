@@ -9,16 +9,17 @@ import { redirect } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 const Header = () => {
   return (
-    <div className="w-full sticky top-0 py-6 bg-[#131313]">
+    <div className="w-full sticky top-0 py-6 z-[2] bg-[#131313]">
       <div className="container flex justify-between">
         <div className=" flex flex-col items-center gap-4  md:flex-row">
           <Link href="href">
             <Image
+              priority
               src="/assets/logo.png"
               alt="alt"
-              sizes="100%"
-              width={120}
-              height={120}
+              style={{ height: "auto", width: "auto" }}
+              width={100}
+              height={0}
             />
           </Link>
           <div className="hidden md:flex space-x-4">

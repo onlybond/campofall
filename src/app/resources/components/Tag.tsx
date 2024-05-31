@@ -11,19 +11,19 @@ const Tags = ({ label }: TagProps) => {
   const [types, setTypes] = useState<Array<string>>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/fetchResources", { cache: "no-store" })
+    fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         if (label === "type") {
           const types: Array<string> = Array.from(
-            new Set(data.map((resource: { type: string }) => resource.type))
+            new Set(data.map((resource) => resource.resourceType))
           );
           setTypes(types);
           setSelected(new Array(types.length).fill(false)); // Initialize selected state
         }
         if (label === "tags") {
           const tags: Array<string> = Array.from(
-            new Set(data.flatMap((resource: { tags: Array<string> }) => resource.tags))
+            new Set(data.flatMap((resource) => resource.resourceTags))
           );
           setTypes(tags);
           setSelected(new Array(tags.length).fill(false)); // Initialize selected state

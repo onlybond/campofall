@@ -25,9 +25,9 @@ const ResourceCard = ({
         <Image src="/assets/logoiso.png" alt="alt" width={24} height={24} />
         <h1 className="text-2xl font-bold">{title}</h1>
         <p className="text-xs truncate">{description}</p>
-        <div className="text-primary  text-sm font-bold">
+        <div className="text-primary space-x-2 overflow-x-auto whitespace-nowrap text-xs font-bold" style={{scrollbarWidth:"none",scrollbarColor:"#F37121 transparent"}}>
           {tags.map((tag: string, index: number) => (
-            <span key={index} className="mr-1">
+            <span key={index} className="">
               #{tag}
             </span>
           ))}
@@ -36,7 +36,7 @@ const ResourceCard = ({
       <div className="bg-[#363636] absolute bottom-0 w-full flex justify-between items-center py-2 px-4">
         <Button
           variant={"outline"}
-          className="bg-[#363636] h-fit text-xs py-1 rounded-sm"
+          className="bg-[#363636] h-fit text-xs py-1 rounded-sm border-white hover:bg-white hover:text-[#131313] focus:outline-none"
         >
           {type}
         </Button>
