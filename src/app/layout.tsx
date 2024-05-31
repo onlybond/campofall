@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
 import { poppins } from "@/app/ui/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
-
+import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
