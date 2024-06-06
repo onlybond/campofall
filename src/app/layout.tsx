@@ -26,6 +26,7 @@ export default function RootLayout({
           <div className="flex h-screen">
             <SideNav />
             {children}
+            <Analytics />
           </div>
         </body>
       </html>
