@@ -7,8 +7,6 @@ import { poppins } from "@/app/ui/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "CAMPofall - Your Design Resource Hub",
   description:
@@ -21,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ scrollbarWidth: "none" }}>
+    <html lang="en" >
       <body
         className={`${poppins.className} text-white bg-black flex flex-col`}
       >

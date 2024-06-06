@@ -1,15 +1,16 @@
 "use client";
 
 import React, { useEffect,useRef } from "react";
-import anime from "animejs";
+import anime from "animejs/lib/anime.es.js";
 const Heroanimation = () => {
-  const sphereRef = useRef(null);
+  const sphereRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sphereEl = sphereRef.current;
+    if (!sphereEl) return;
     const spherePathEls = sphereEl.querySelectorAll(".sphere path");
     const pathLength = spherePathEls.length;
-    const animations = [];
+    const animations:Array<any> = [];
 
     const breathAnimation = anime({
       begin: () => {

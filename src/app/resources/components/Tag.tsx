@@ -11,25 +11,35 @@ const Tags = ({ label }: TagProps) => {
   const [types, setTypes] = useState<Array<string>>([]);
 
   useEffect(() => {
-    fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", { cache: "no-store" })
+    fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", {
+      cache: "no-store",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (label === "type") {
           const types: Array<string> = Array.from(
-            new Set(data.map((resource) => resource.resourceType))
+            new Set(
+              data.map(
+                (resource: { resourceType: string }) => resource.resourceType
+              )
+            )
           );
           setTypes(types);
           setSelected(new Array(types.length).fill(false)); // Initialize selected state
         }
         if (label === "tags") {
           const tags: Array<string> = Array.from(
-            new Set(data.flatMap((resource) => resource.resourceTags))
+            new Set(
+              data.flatMap(
+                (resource: { resourceTags: string }) => resource.resourceTags
+              )
+            )
           );
           setTypes(tags);
           setSelected(new Array(tags.length).fill(false)); // Initialize selected state
         }
       });
-  }, []);
+  }, [label]);
 
   const handleClick = (index: number) => {
     const newSelected = [...selected];
@@ -42,7 +52,7 @@ const Tags = ({ label }: TagProps) => {
       {types.map((type, idx) => (
         <div
           className={`px-6 py-2 border rounded-full border-primary cursor-pointer select-none hover:bg-primary/50 active:bg-primary active:text-white ${
-            selected[idx] ? "bg-primary":"hover:bg-primary/50"
+            selected[idx] ? "bg-primary" : "hover:bg-primary/50"
           }`}
           key={idx}
           onClick={() => handleClick(idx)}
@@ -55,4 +65,3 @@ const Tags = ({ label }: TagProps) => {
 };
 
 export default Tags;
-

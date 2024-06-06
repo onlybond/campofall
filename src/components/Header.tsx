@@ -22,7 +22,7 @@ const Header = () => {
               height={0}
             />
           </Link>
-          <div className="hidden md:flex space-x-4">
+          {/* <div className="hidden md:flex space-x-4">
             <Link
               href="/"
               className={`${poppins.className} font-extralight text-base`}
@@ -35,7 +35,7 @@ const Header = () => {
             >
               Inspiration
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="gap-4 items-center hidden md:flex">
           <Link
@@ -52,22 +52,22 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          <Link
+          {/* <Link
             href="/"
             className={`${poppins.className} font-extralight text-base`}
           >
             NewsLetter
-          </Link>
+          </Link> */}
           <Link
             href="/"
-            className={`${poppins.className} font-extralight text-base`}
+            className={`${poppins.className} font-extralight text-base hover:opacity-50`}
           >
             Sponser
           </Link>
           <Link href={"/sign-up"}>
             <Button
               variant={"outline"}
-              className="bg-[#131313] rounded-full px-6 py-1 h-fit text-xs"
+              className="bg-[#131313] hover:bg-white hover:text-[#131313] transition-all rounded-full px-6 py-1 h-fit text-xs"
             >
               Join Us <MdChevronRight className="pl-1 w-5 h-5" />
             </Button>
