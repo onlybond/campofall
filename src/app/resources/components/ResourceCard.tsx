@@ -10,6 +10,7 @@ interface ResourceCardProps {
   link: string;
   tags: string[];
   type: string;
+  subscription: boolean;
 }
 
 const ResourceCard = ({
@@ -18,9 +19,11 @@ const ResourceCard = ({
   link,
   tags = [],
   type,
+  subscription,
 }: ResourceCardProps) => {
   return (
     <div className="bg-[#131313] w-auto h-44 relative rounded-lg overflow-hidden transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      <span className="absolute top-4 right-4 text-primary text-xs">{subscription ? "Paid" : ""}</span>
       <div className="p-4 space-y-2">
         <Image src="/assets/logoiso.png" alt="alt" width={24} height={24} />
         <h1 className="text-2xl font-bold">{title}</h1>

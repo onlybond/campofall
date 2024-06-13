@@ -64,7 +64,6 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
 
   const handleSubmit = async (data: z.infer<typeof resourceSchema>) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
     form.reset();
     setOpenModal(false);
     toast.success("Resource submitted successfully", {

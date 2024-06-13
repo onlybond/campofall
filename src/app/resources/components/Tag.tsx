@@ -1,22 +1,28 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 type TagProps = {
   label: string;
 };
 
 const Tags = ({ label }: TagProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [selectedType, setSelectedType] = useState<Array<boolean>>([]);
   const [selectedTags, setSelectedTags] = useState<Array<boolean>>([]);
   const [types, setTypes] = useState<Array<string>>([]);
+
   useEffect(() => {
     fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", {
-      cache: "no-store",
+      cache: "no-cache",
     })
       .then((res) => res.json())
       .then((data) => {
+        let initialSelected: Array<boolean> = [];
         if (label === "type") {
           const types: Array<string> = Array.from(
             new Set(
@@ -26,7 +32,16 @@ const Tags = ({ label }: TagProps) => {
             )
           );
           setTypes(types);
-          setSelectedType(new Array(types.length).fill(false)); // Initialize selected state
+          initialSelected = new Array(types.length).fill(false);
+
+          const selectedTypesFromURL = searchParams.get(label)?.split(",") || [];
+          selectedTypesFromURL.forEach((type) => {
+            const index = types.indexOf(type);
+            if (index > -1) {
+              initialSelected[index] = true;
+            }
+          });
+          setSelectedType(initialSelected); // Initialize selected state
         }
         if (label === "tags") {
           const tags: Array<string> = Array.from(
@@ -37,38 +52,63 @@ const Tags = ({ label }: TagProps) => {
             )
           );
           setTypes(tags);
-          setSelectedTags(new Array(tags.length).fill(false)); // Initialize selected state
+          initialSelected = new Array(tags.length).fill(false);
+
+          const selectedTagsFromURL = searchParams.get(label)?.split(",") || [];
+          selectedTagsFromURL.forEach((tag) => {
+            const index = tags.indexOf(tag);
+            if (index > -1) {
+              initialSelected[index] = true;
+            }
+          });
+          setSelectedTags(initialSelected); // Initialize selected state
         }
       });
-  }, [label]);
+  }, [label, searchParams]);
 
-  const handleClick = (index: number,type:string) => {
+  const handleClick = (index: number) => {
     if (label === "type") {
       const newSelected = [...selectedType];
       newSelected[index] = !newSelected[index];
       setSelectedType(newSelected);
-      console.log(selectedType);
-      const searchselectedTypes = types.filter((_, idx) => selectedType[idx]);
-      router.push(`/resources?${label}=${searchselectedTypes.join(",")}`);
-    }
-    else if(label === "tags"){
+      const searchselectedTypes = types.filter((_, idx) => newSelected[idx]);
+      const newParams = new URLSearchParams(searchParams.toString());
+      if (searchselectedTypes.length > 0) {
+        newParams.set(label, searchselectedTypes.join(","));
+      } else {
+        newParams.delete(label);
+      }
+      router.push(`${pathname}?${newParams.toString()}`);
+    } else if (label === "tags") {
       const newSelected = [...selectedTags];
       newSelected[index] = !newSelected[index];
       setSelectedTags(newSelected);
-      const searchselectedTags = types.filter((_, idx) => selectedTags[idx]);
-      router.push(`/resources?${label}=${searchselectedTags.join(",")}`);
+      const searchselectedTags = types.filter((_, idx) => newSelected[idx]);
+      const newParams = new URLSearchParams(searchParams.toString());
+      if (searchselectedTags.length > 0) {
+        newParams.set(label, searchselectedTags.join(","));
+      } else {
+        newParams.delete(label);
+      }
+      router.push(`${pathname}?${newParams.toString()}`);
     }
   };
+
   return (
     <>
       {types.map((type, idx) => (
         <div
-          className={`px-6 py-2 border rounded-full border-primary cursor-pointer select-none hover:bg-primary/50 active:bg-primary active:text-white ${
-            label === "type" ? selectedType[idx] ? "bg-primary" : "hover:bg-primary/50" :
-            selectedTags[idx] ? "bg-primary" : "hover:bg-primary/50"
+          className={`px-6 py-2 border rounded-full border-primary cursor-pointer select-none ${
+            label === "type"
+              ? selectedType[idx]
+                ? "bg-primary text-white"
+                : "hover:bg-primary/50"
+              : selectedTags[idx]
+              ? "bg-primary text-white"
+              : "hover:bg-primary/50"
           }`}
           key={idx}
-          onClick={() => handleClick(idx,type)}
+          onClick={() => handleClick(idx)}
         >
           {type}
         </div>

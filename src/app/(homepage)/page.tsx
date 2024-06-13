@@ -58,9 +58,9 @@ export default async function Home() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-          <ResourceCard title="test1" description="Lorem" link="" tags={[]} type=""/>
-          <ResourceCard title="" description="" link="" tags={[]} type=""/>
-          <ResourceCard title="" description="" link="" tags={[]} type=""/>
+          <ResourceCard title="test1" description="Lorem" link="" tags={[]} type="" subscription={false}/>
+          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
+          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
         </div>
       </div>
     </div>
