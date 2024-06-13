@@ -8,16 +8,7 @@ import {
   SelectValue,
   SelectGroup
 } from "@/components/ui/select";
-const getResources = async () => {
-  const res = await fetch(
-    "https://6652d529813d78e6d6d656d1.mockapi.io/products",
-    {
-      cache: "no-cache",
-    }
-  );
-  const data = await res.json();
-  return data;
-};
+import Resources from "./components/resources";
 export interface resource {
   resourceTitle: string;
   resourceURL: string;
@@ -25,7 +16,18 @@ export interface resource {
   resourceType: string;
   resourceTags: string[];
 }
-const page = async () => {
+
+const getResources = async () => {
+  const res = await fetch(
+    "https://6652d529813d78e6d6d656d1.mockapi.io/products",
+    {
+      cache: "no-cache",
+    }
+  );
+  const data:resource[] = await res.json();
+  return data;
+};
+const page  = async () => {
   const resources = await getResources();
   return (
     <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-full ">
@@ -51,18 +53,7 @@ const page = async () => {
         <AddResourceTrigger>Add New Resource</AddResourceTrigger>
       </div>
       <div>
-        <div className="grid grid-cols-3 gap-x-8 gap-y-6 w-full">
-          {resources.map((resource: resource, idx: number) => (
-            <ResourceCard
-              key={idx}
-              title={resource.resourceTitle}
-              description={resource.resourceDescription}
-              link={resource.resourceURL}
-              type={resource.resourceType}
-              tags={resource.resourceTags}
-            />
-          ))}
-        </div>
+        <Resources resources = {resources}/>
       </div>
     </div>
   );

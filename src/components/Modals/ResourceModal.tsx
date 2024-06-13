@@ -29,7 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { LoaderIcon } from "lucide-react";
+import {toast} from "react-toastify"
 const resourceSchema = z.object({
   title: z
     .string()
@@ -50,6 +51,7 @@ const resourceSchema = z.object({
 })
 const resourceTypes = ["design Tools","Coding Tools","AI Tools","Font","Plugins"]
 const ResourceModal = ({ children }: { children: React.ReactNode }) => {
+  const [openModal, setOpenModal] = React.useState(false);
   const form = useForm<z.infer<typeof resourceSchema>>({
     resolver: zodResolver(resourceSchema),
     defaultValues: {
@@ -64,10 +66,16 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log(data);
     form.reset();
+    setOpenModal(false);
+    toast.success("Resource submitted successfully", {
+      position: "top-right",
+      autoClose: 5000,
+
+    });
   };
   const isLoading = form.formState.isSubmitting;
   return (
-    <Dialog>
+    <Dialog open={openModal} onOpenChange={setOpenModal}>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="flex flex-col justify-start items-start bg-[#131313]">
         <DialogHeader>
@@ -172,8 +180,9 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
               type="submit"
               className="text-foreground font-bold mt-4 disabled:cursor-not-allowed"
               disabled={isLoading}
-            >
-              Submit
+            >{
+              isLoading ?  <LoaderIcon className="w-4 h-4 animate-spin" /> : "Submit"
+            }
             </Button>
           </form>
         </Form>
