@@ -12,27 +12,16 @@ const Filters = () => {
   const searchParams = useSearchParams();
   const typeSearch = useSearchParams().get("type")?.split(",") || [];
   const tagSearch = useSearchParams().get("tags")?.split(",") || [];
-  const subscriptionSearch = useSearchParams().get("subscription") || "";
-  const handleSubscriptionChange = useCallback(
-    (value: string) => {
-      console.log(value);
-      const params = new URLSearchParams(searchParams);
-      if (value === "free") {
-        params.append("subs", "false");
-      } else if (value === "paid") {
-        params.append("subs", "true");
-      } else value === "";{
-        params.delete("subs");
-      }
-      router.push(`${href}?${params.toString()}`);
-    },
-    [router, searchParams]
-  );
+  const subscriptionSearch = useSearchParams().get("subscription");
+  const handleSubscriptionChange = (value: string) => {
+    router.push(`${href}?subscription=${value}`);
+    
+  }
   return (
     <div className="w-full fixed p-4 z-[2] bg-[#363636]">
       <div className="flex gap-4 ml-16 items-center">
         <span className="font-bold text-2xl">Filters</span>
-        <RadioGroup className="flex "  onValueChange={handleSubscriptionChange}>
+        <RadioGroup className="flex " value={subscriptionSearch||undefined}  onValueChange={handleSubscriptionChange}>
           <div className="space-x-2">
             <RadioGroupItem value="free" id="free" />
             <Label htmlFor="free" className="cursor-pointer">

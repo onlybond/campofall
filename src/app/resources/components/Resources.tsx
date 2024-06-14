@@ -13,13 +13,14 @@ export default function Resources({ resources }: { resources: resource[] }) {
     const typeSearch = searchParams.get("type")?.split(",") || [];
     const tagSearch = searchParams.get("tags")?.split(",") || [];
     const SubSearch = searchParams.get("subscription") || "";
+    console.log(SubSearch)
     const filtered = resources.filter((resource) => {
       const typeMatch =
         typeSearch.length === 0 || typeSearch.includes(resource.resourceType);
       const tagMatch =
         tagSearch.length === 0 ||
-        resource.resourceTags.some((tag) => tagSearch.includes(tag));
-      const SubMatch = SubSearch === "" || resource.subscription === (SubSearch === "false") || resource.subscription === (SubSearch === "true");
+        tagSearch.includes(resource.resourceTags.toString());
+      const SubMatch = SubSearch === "" ||resource.subscription === (SubSearch === "true");
       return typeMatch && tagMatch && SubMatch;
     });
 

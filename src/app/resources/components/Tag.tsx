@@ -15,7 +15,6 @@ const Tags = ({ label }: TagProps) => {
   const [selectedType, setSelectedType] = useState<Array<boolean>>([]);
   const [selectedTags, setSelectedTags] = useState<Array<boolean>>([]);
   const [types, setTypes] = useState<Array<string>>([]);
-
   useEffect(() => {
     fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", {
       cache: "no-cache",
@@ -65,7 +64,6 @@ const Tags = ({ label }: TagProps) => {
         }
       });
   }, [label, searchParams]);
-
   const handleClick = (index: number) => {
     if (label === "type") {
       const newSelected = [...selectedType];
