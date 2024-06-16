@@ -31,6 +31,7 @@ const getResources = async () => {
 };
 const page = async () => {
   const resources = await getResources();
+  
   return (
     <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-full ">
       <div className="flex w-full justify-between">
