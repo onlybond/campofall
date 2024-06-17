@@ -78,3 +78,6 @@
   html{
     scrollbar-width: none;
   }
+  .login-with:hover span{
+    color: black;
+  }
