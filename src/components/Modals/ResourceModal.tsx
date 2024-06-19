@@ -30,7 +30,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { LoaderIcon } from "lucide-react";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
+import { RadioGroup } from "@radix-ui/react-radio-group";
+import { RadioGroupItem } from "../ui/radio-group";
 const resourceSchema = z.object({
   title: z
     .string()
@@ -39,17 +41,24 @@ const resourceSchema = z.object({
   description: z
     .string()
     .min(10, { message: "Description should be more than 10 characters" }),
+
   link: z.string().url({ message: "Invalid URL" }),
   // keywords: z
   //   .array(z.string())
   //   .min(1, { message: "add Atleast one keyword" })
   //   .max(5, { message: "Maximum 5 keywords allowed" }),
-  type: z.string().refine((data) => data.trim() !== '', {
+  type: z.string().refine((data) => data.trim() !== undefined, {
     message: "Please select a resource type",
-    path: ["type"]
+    path: ["type"],
   }),
-})
-const resourceTypes = ["design Tools","Coding Tools","AI Tools","Font","Plugins"]
+});
+const resourceTypes = [
+  "design Tools",
+  "Coding Tools",
+  "AI Tools",
+  "Font",
+  "Plugins",
+];
 const ResourceModal = ({ children }: { children: React.ReactNode }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const form = useForm<z.infer<typeof resourceSchema>>({
@@ -58,18 +67,15 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
       title: "",
       description: "",
       link: "",
-      type: "",
     },
   });
-
   const handleSubmit = async (data: z.infer<typeof resourceSchema>) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     form.reset();
     setOpenModal(false);
-    toast.success("Resource submitted successfully", {
+    toast.error("Resource submitted successfully", {
       position: "top-right",
       autoClose: 5000,
-
     });
   };
   const isLoading = form.formState.isSubmitting;
@@ -125,6 +131,63 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <FormField
               control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select a resource type</FormLabel>
+                  <FormControl>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select the Resource Type" />
+                        </SelectTrigger>
+                      <SelectContent>
+                        {resourceTypes.map((type) => (
+                          <SelectItem
+                            className="hover:bg-primary"
+                            key={type}
+                            value={type}
+                          >
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="link"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex space-x-2"
+                    >
+                      <FormItem className="space-x-2">
+                        <FormControl>
+                          <RadioGroupItem value="link" />
+                        </FormControl>
+                        <FormLabel>Link</FormLabel>
+                      </FormItem>
+                      <FormItem className="space-x-2">
+                        <FormControl>
+                          <RadioGroupItem value="file" />
+                        </FormControl>
+                        <FormLabel>File</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="link"
               render={({ field }) => (
                 <FormItem>
@@ -140,48 +203,17 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="type"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select a resource type</FormLabel>
-                  <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
-                      <FormControl className="bg-muted/10  focus:ring-primary">
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select the Resource Type" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {
-                          resourceTypes.map((type) => (
-                            <SelectItem
-                              className="hover:bg-primary"
-                              key={type}
-                              value={type}
-                            >
-                              {type}
-                            </SelectItem>
-                          ))
-                        }
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <Button
               type="submit"
               className="text-foreground font-bold mt-4 disabled:cursor-not-allowed"
               disabled={isLoading}
-            >{
-              isLoading ?  <LoaderIcon className="w-4 h-4 animate-spin" /> : "Submit"
-            }
+            >
+              {isLoading ? (
+                <LoaderIcon className="w-4 h-4 animate-spin" />
+              ) : (
+                "Submit"
+              )}
             </Button>
           </form>
         </Form>

@@ -10,6 +10,7 @@ import {
 import Resources from "./components/Resources";
 import loading from "./loading";
 import { Suspense } from "react";
+import PaginationControls from "./components/PaginationControls";
 export interface resource {
   resourceTitle: string;
   resourceURL: string;
@@ -29,13 +30,30 @@ const getResources = async () => {
   const data: Array<resource> = await res.json();
   return data;
 };
-const page = async () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string  | string[] | undefined};
+}) => {
   const resources = await getResources();
-  
+  const page = searchParams["page"] ?? "1";
+  const per_page = searchParams["per_page"] ?? "9";
+
+  const start = (Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+
+  const slicedResources = resources.slice(start, end);
+
+  if (!page)
+    return (
+      <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-full">
+        page not found
+      </div>
+    );
   return (
-    <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-full ">
+    <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-fit ">
       <div className="flex w-full justify-between">
-        <div>Showing {`${resources.length}`} resources</div>
+        <div>Showing {`${slicedResources.length}`} resources</div>
         <div className="flex gap-4">
           <div className="flex justify-center items-center gap-2">
             <span>sorting</span>
@@ -62,9 +80,13 @@ const page = async () => {
       </div>
       <div>
         <Suspense fallback={<div> loading...</div>}>
-          <Resources resources={resources} />
+          <Resources resources={slicedResources} />
         </Suspense>
       </div>
+      <PaginationControls
+        hasNextPage={end < resources.length}
+        hasPreviousPage={start > 0}
+      />
     </div>
   );
 };

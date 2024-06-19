@@ -30,7 +30,7 @@ export default function Resources({ resources }: { resources: resource[] }) {
   return (
     <>
       {filteredResources.length!== 0 ? (
-        <div className="grid grid-cols-3 gap-x-8 gap-y-6 w-full">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6 w-full">
           {filteredResources.map((resource, idx) => (
             <ResourceCard
               key={idx}
