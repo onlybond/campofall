@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -33,6 +33,7 @@ import { LoaderIcon } from "lucide-react";
 import { toast } from "react-toastify";
 import { RadioGroup } from "@radix-ui/react-radio-group";
 import { RadioGroupItem } from "../ui/radio-group";
+
 const resourceSchema = z.object({
   title: z
     .string()
@@ -41,24 +42,42 @@ const resourceSchema = z.object({
   description: z
     .string()
     .min(10, { message: "Description should be more than 10 characters" }),
-
-  link: z.string().url({ message: "Invalid URL" }),
-  // keywords: z
-  //   .array(z.string())
-  //   .min(1, { message: "add Atleast one keyword" })
-  //   .max(5, { message: "Maximum 5 keywords allowed" }),
-  type: z.string().refine((data) => data.trim() !== undefined, {
-    message: "Please select a resource type",
-    path: ["type"],
-  }),
+  link: z.string().url({ message: "Invalid URL" }).optional(),
+  type: z.string({ message: "Please select a resource type" }),
+  format: z.enum(["link", "file"],{ message: "Please select a resource format" }),
+  resourceFile:  z
+  .instanceof(FileList)
+  .optional()
+  .refine((file) => file?.length == 1, "File is required.")
+  .refine(
+    (file) =>
+      file && file[0]?.type === "image/png" ||
+      file && file[0]?.type === "image/jpeg" ||
+      file && file[0]?.type === "image/jpg",
+    "Must be a png, jpeg or jpg.",
+  )
+  .refine((file) => file && file[0]?.size <= 5000000, `Max file size is 5MB.`),
+}).refine((data) => {
+  if (data.format === "link" && !data.link) {
+    return false;
+  }
+  if (data.format === "file" && !data.resourceFile) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Either link or file must be provided",
+  path: ["link", "resourceFile"], // or any other path to show the error
 });
+
 const resourceTypes = [
-  "design Tools",
+  "Design Tools",
   "Coding Tools",
   "AI Tools",
   "Font",
   "Plugins",
 ];
+
 const ResourceModal = ({ children }: { children: React.ReactNode }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const form = useForm<z.infer<typeof resourceSchema>>({
@@ -67,18 +86,24 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
       title: "",
       description: "",
       link: "",
+      type: "",
+      format: "link",
     },
   });
+
   const handleSubmit = async (data: z.infer<typeof resourceSchema>) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log(data);
     form.reset();
     setOpenModal(false);
-    toast.error("Resource submitted successfully", {
+    toast.success("Resource submitted successfully", {
       position: "top-right",
       autoClose: 5000,
     });
   };
+
   const isLoading = form.formState.isSubmitting;
+
   return (
     <Dialog open={openModal} onOpenChange={setOpenModal}>
       <DialogTrigger>{children}</DialogTrigger>
@@ -86,14 +111,13 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
         <DialogHeader>
           <DialogTitle>Submit Resource</DialogTitle>
           <DialogDescription className="text-primary">
-            Submit a resource for other designers. If we like it too, we’ll
-            feature it.
+            Submit a resource for other designers. If we like it too, we’ll feature it.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 w-full"
           >
             <FormField
               control={form.control}
@@ -137,9 +161,9 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                   <FormLabel>Select a resource type</FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select the Resource Type" />
-                        </SelectTrigger>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select the Resource Type" />
+                      </SelectTrigger>
                       <SelectContent>
                         {resourceTypes.map((type) => (
                           <SelectItem
@@ -159,13 +183,14 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <FormField
               control={form.control}
-              name="link"
+              name="format"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="flex justify-center items-center gap-2">
+                  <FormLabel>Resource Format: {"  "}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                       className="flex space-x-2"
                     >
                       <FormItem className="space-x-2">
@@ -182,27 +207,51 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="link"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Resource Link</FormLabel>
-                  <FormControl className="bg-muted/10">
-                    <Input
-                      className="focus-visible:ring-primary"
-                      placeholder="Resource Link"
-                      {...field}
-                    />
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {form.watch("format") === "file" ? (
+              <FormField
+                control={form.control}
+                name="resourceFile"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Resource File</FormLabel>
+                    <FormControl className="bg-muted/10">
+                      <Input
+                        className="focus-visible:ring-primary"
+                        placeholder="Resource File"
+                        type="file"
+                        onChange={(event) => {
+                          field.onChange(event.target?.files?.[0] ?? undefined);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : null}
+            {form.watch("format") === "link" ? (
+              <FormField
+                control={form.control}
+                name="link"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Resource Link</FormLabel>
+                    <FormControl className="bg-muted/10">
+                      <Input
+                        className="focus-visible:ring-primary"
+                        placeholder="Resource Link"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : null}
 
             <Button
               type="submit"
