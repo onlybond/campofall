@@ -11,25 +11,28 @@ import Resources from "./components/Resources";
 import loading from "./loading";
 import { Suspense } from "react";
 import PaginationControls from "./components/PaginationControls";
+
 export interface resource {
-  resourceTitle: string;
-  resourceURL: string;
-  resourceDescription: string;
-  resourceType: string;
-  resourceTags: string[];
-  subscription: boolean;
+  title: string;
+  type: string;
+  email: string;
+  tags: string[];
+  description: string;
+  resourceLink: string;
+  resourcePaid: boolean;
 }
 
 const getResources = async () => {
   const res = await fetch(
-    "https://6652d529813d78e6d6d656d1.mockapi.io/products",
+    "http://localhost:3000/api/getResources",
     {
       cache: "no-cache",
     }
   );
-  const data: Array<resource> = await res.json();
-  return data;
+  const data = await res.json();
+  return data.data;
 };
+
 const page = async ({
   searchParams,
 }: {
@@ -50,6 +53,8 @@ const page = async ({
         page not found
       </div>
     );
+
+    
   return (
     <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-fit ">
       <div className="flex w-full justify-between">
