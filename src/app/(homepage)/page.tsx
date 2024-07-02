@@ -48,7 +48,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 py-6 h-fit">
+      <div className="flex flex-col gap-5 py-6 h-fit mt-8">
         <div className="flex gap-y-4 items-center w-full justify-between">
           <h1 className="text-6xl font-thin">
             <span className="font-semibold">Resource</span> Links
@@ -60,9 +60,9 @@ export default async function Home() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-          <ResourceCard title="test1" description="Lorem" link="" tags={[]} type="" subscription={false}/>
-          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
-          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
+        <ResourceCard title="CampOfall" description="Design and collaborate all in the browser" link="" tags={['tools','tech']} type="Design Tools" subscription={false}/>
+          <ResourceCard title="CampOfall" description="Design and collaborate all in the browser" link="" tags={['tools','tech']} type="Design Tools" subscription={false}/>
+          <ResourceCard title="CampOfall" description="Design and collaborate all in the browser" link="" tags={['tools','tech']} type="Design Tools" subscription={false}/>
         </div>
       </div>
       {

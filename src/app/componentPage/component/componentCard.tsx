@@ -48,30 +48,25 @@ interface GalleryProps {
 // Define the Gallery component
 const Gallery: React.FC<GalleryProps> = ({ displayCount }) => {
   const cards = [
-    { id: 1, title: 'Card 1', description: 'This is card 1', imgSrc: '/img/features.png', likes: 10, tags: ['feature', 'image'] },
-    { id: 2, title: 'Card 2', description: 'This is card 2', imgSrc: '/img/verify.png', likes: 20, tags: ['verification', 'security'] },
-    { id: 3, title: 'Card 3', description: 'This is card 3', imgSrc: '/img/shotgun 650.jpg', likes: 30, tags: ['shotgun', 'image'] },
-    { id: 4, title: 'Card 4', description: 'This is card 4', imgSrc: '/img/stencil-white-000.avif', likes: 40, tags: ['stencil', 'white'] },
-    { id: 5, title: 'Card 5', description: 'This is card 5', imgSrc: '/img/features.png', likes: 50, tags: ['feature', 'image'] },
-    { id: 6, title: 'Card 6', description: 'This is card 6', imgSrc: '/img/verify.png', likes: 60, tags: ['verification', 'security'] },
-    { id: 1, title: 'Card 1', description: 'This is card 1', imgSrc: '/img/features.png', likes: 10, tags: ['feature', 'image'] },
-    { id: 2, title: 'Card 2', description: 'This is card 2', imgSrc: '/img/verify.png', likes: 20, tags: ['verification', 'security'] },
-    { id: 3, title: 'Card 3', description: 'This is card 3', imgSrc: '/img/shotgun 650.jpg', likes: 30, tags: ['shotgun', 'image'] },
-    { id: 4, title: 'Card 4', description: 'This is card 4', imgSrc: '/img/stencil-white-000.avif', likes: 40, tags: ['stencil', 'white'] },
-    { id: 5, title: 'Card 5', description: 'This is card 5', imgSrc: '/img/features.png', likes: 50, tags: ['feature', 'image'] },
-    { id: 6, title: 'Card 6', description: 'This is card 6', imgSrc: '/img/verify.png', likes: 60, tags: ['verification', 'security'] },
-    // Add more cards as needed
+    { imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },
+    { imgSrc: '/assets/features.png',likes: 10, tags:['features','image']},
+    { imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
+    { imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
+    { imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },  
+    { imgSrc: '/assets/features.png', likes: 50, tags: ['feature', 'image'] },
+    { imgSrc: '/assets/verify.png', likes: 60, tags: ['verification', 'security'] },
+    // { imgSrc: '/assets/features.png', likes: 50, tags: ['feature', 'image'] },
+    // { imgSrc: '/assets/verify.png', likes: 60, tags: ['verification', 'security'] },
   ];
 
   const displayedCards = displayCount ? cards.slice(0, displayCount) : cards;
 
   return (
-    <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 p-4">
+    <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
       {displayedCards.map((card) => (
         <ComponentCard
-          key={card.id}
           imageSrc={card.imgSrc}
-          likes={card.likes}
+          likes={card.likes}  
           tags={card.tags}
         />
       ))}
