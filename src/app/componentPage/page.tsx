@@ -121,7 +121,7 @@ const Page: React.FC = () => {
         <div id='compo' className='flex-grow w-[80%] m-3'>
           <div className='flex flex-col gap-5'>
             <h2 className='text-[#FE7121] font-bold'>Free Figma Component Library</h2>
-            <p className='w-[70%]'>We've curated the best Figma components in one place. Discover, copy and paste UI components in Figma with the most efficient way to build designs. Get all the essentials for any design project in one place. From buttons to data visualizations, you'll find the perfect component here with a few clicks.</p>
+            <p className='w-[70%]'>We&apos;ve curated the best Figma components in one place. Discover, copy and paste UI components in Figma with the most efficient way to build designs. Get all the essentials for any design project in one place. From buttons to data visualizations, you&apos;ll find the perfect component here with a few clicks.</p>
             <Gallery />
           </div>
           

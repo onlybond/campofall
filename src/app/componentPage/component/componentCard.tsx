@@ -48,13 +48,13 @@ interface GalleryProps {
 // Define the Gallery component
 const Gallery: React.FC<GalleryProps> = ({ displayCount }) => {
   const cards = [
-    { imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },
-    { imgSrc: '/assets/features.png',likes: 10, tags:['features','image']},
-    { imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
-    { imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
-    { imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },  
-    { imgSrc: '/assets/features.png', likes: 50, tags: ['feature', 'image'] },
-    { imgSrc: '/assets/verify.png', likes: 60, tags: ['verification', 'security'] },
+    { key:1, imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },
+    { key:2, imgSrc: '/assets/features.png',likes: 10, tags:['features','image']},
+    { key:3, imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
+    { key:4, imgSrc: '/assets/reset.png', likes: 10, tags: ['reset', 'image'] },
+    { key:5, imgSrc: '/assets/verify.png', likes: 20, tags: ['verification', 'security'] },  
+    { key:6, imgSrc: '/assets/features.png', likes: 50, tags: ['feature', 'image'] },
+    { key:7, imgSrc: '/assets/verify.png', likes: 60, tags: ['verification', 'security'] },
     // { imgSrc: '/assets/features.png', likes: 50, tags: ['feature', 'image'] },
     // { imgSrc: '/assets/verify.png', likes: 60, tags: ['verification', 'security'] },
   ];
@@ -65,6 +65,7 @@ const Gallery: React.FC<GalleryProps> = ({ displayCount }) => {
     <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
       {displayedCards.map((card) => (
         <ComponentCard
+          key={card.key}
           imageSrc={card.imgSrc}
           likes={card.likes}  
           tags={card.tags}
