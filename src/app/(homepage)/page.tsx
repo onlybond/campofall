@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ResourceCard from "../resources/components/ResourceCard";
 import Heroanimation from "./components/Heroanimation";
+import ComponentCard from "../componentPage/component/componentCard";
+import Gallery from "../componentPage/component/componentCard";
 export default async function Home() {
   return (
     <div className="flex w-screen container flex-col ">
@@ -63,6 +65,24 @@ export default async function Home() {
           <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
         </div>
       </div>
+      {
+        /* Components part starts here */
+      }
+    <div className="flex flex-col gap-5 h-fit">
+      <div className="flex gap-y-4 items-center w-full justify-between">
+        <h1 className="text-4xl sm:text-6xl font-thin">
+          <span className="font-semibold">All</span> Components
+        </h1>
+        <div className="flex flex-row gap-x-4 items-center justify-center">
+          <ArrowLeft className="w-4 h-4 text-primary" />
+          <ArrowRight className="w-4 h-4 text-primary" />
+        </div>
+      </div>
+     <div className="flex flex-wrap">
+        <Gallery displayCount={8} />
+      </div>
+  </div>
+
     </div>
   );
 }
