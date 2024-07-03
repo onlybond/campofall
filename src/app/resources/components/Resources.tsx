@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { resource } from "../page";
+import { resource } from "../resources";
 import ResourceCard from "./ResourceCard";
 import { useSearchParams } from "next/navigation";
 

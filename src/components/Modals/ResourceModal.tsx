@@ -34,41 +34,68 @@ import { toast } from "react-toastify";
 import { RadioGroup } from "@radix-ui/react-radio-group";
 import { RadioGroupItem } from "../ui/radio-group";
 
-const resourceSchema = z.object({
-  title: z
-    .string()
-    .min(2, { message: "Title should be more than 2 characters" })
-    .max(100),
-  description: z
-    .string()
-    .min(10, { message: "Description should be more than 10 characters" }),
-  link: z.string().url({ message: "Invalid URL" }).optional(),
-  type: z.string({ message: "Please select a resource type" }),
-  format: z.enum(["link", "file"],{ message: "Please select a resource format" }),
-  resourceFile:  z
-  .instanceof(FileList)
-  .optional()
-  .refine((file) => file?.length == 1, "File is required.")
+const resourceSchema = z
+  .object({
+    resourceTitle: z
+      .string()
+      .min(2, { message: "Title should be more than 2 characters" })
+      .max(100),
+    resourceDescription: z
+      .string()
+      .min(10, { message: "Description should be more than 10 characters" }),
+    resourceLink: z
+      .string()
+      .url({
+        message: "Invalid URL ex: https://example.com (dont forget https://)",
+      })
+      .optional(),
+    resourceType: z.string({ message: "Please select a resource type" }),
+    resourceFormat: z.enum(["link", "file"], {
+      message: "Please select a resource format",
+    }),
+    resourceFile: z.any().optional(),
+  })
   .refine(
-    (file) =>
-      file && file[0]?.type === "image/png" ||
-      file && file[0]?.type === "image/jpeg" ||
-      file && file[0]?.type === "image/jpg",
-    "Must be a png, jpeg or jpg.",
+    (data) => {
+      if (data.resourceFormat === "link") {
+        return (
+          data.resourceLink === undefined || data.resourceLink.trim() !== ""
+        );
+      } else if (data.resourceFormat === "file") {
+        return (
+          data.resourceFile === undefined || data.resourceFile instanceof File
+        );
+      }
+      return true;
+    },
+    {
+      message:
+        "Please provide a valid link or file based on your selected format",
+      path: ["resourceLink", "resourceFile"],
+    }
   )
-  .refine((file) => file && file[0]?.size <= 5000000, `Max file size is 5MB.`),
-}).refine((data) => {
-  if (data.format === "link" && !data.link) {
-    return false;
-  }
-  if (data.format === "file" && !data.resourceFile) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Either link or file must be provided",
-  path: ["link", "resourceFile"], // or any other path to show the error
-});
+  .refine(
+    (data) => {
+      if (data.resourceFormat === "file" && data.resourceFile instanceof File) {
+        const validTypes = [
+          "image/png",
+          "image/jpeg",
+          "image/jpg",
+          "application/zip",
+        ];
+        return (
+          validTypes.includes(data.resourceFile.type) &&
+          data.resourceFile.size <= 5000000
+        );
+      }
+      return true;
+    },
+    {
+      message:
+        "Invalid file type or size. Only png, jpeg, jpg and zip files up to 5MB are allowed.",
+      path: ["resourceFile"],
+    }
+  );
 
 const resourceTypes = [
   "Design Tools",
@@ -83,11 +110,12 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
   const form = useForm<z.infer<typeof resourceSchema>>({
     resolver: zodResolver(resourceSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      link: "",
-      type: "",
-      format: "link",
+      resourceTitle: "",
+      resourceDescription: "",
+      resourceType: "", 
+      resourceFormat: "link",
+      resourceLink: undefined, 
+      resourceFile: undefined, 
     },
   });
 
@@ -111,7 +139,8 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
         <DialogHeader>
           <DialogTitle>Submit Resource</DialogTitle>
           <DialogDescription className="text-primary">
-            Submit a resource for other designers. If we like it too, we’ll feature it.
+            Submit a resource for other designers. If we like it too, we’ll
+            feature it.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -121,7 +150,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
           >
             <FormField
               control={form.control}
-              name="title"
+              name="resourceTitle"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Resource Title</FormLabel>
@@ -138,7 +167,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <FormField
               control={form.control}
-              name="description"
+              name="resourceDescription"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Resource Description</FormLabel>
@@ -155,7 +184,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <FormField
               control={form.control}
-              name="type"
+              name="resourceType"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Select a resource type</FormLabel>
@@ -183,7 +212,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <FormField
               control={form.control}
-              name="format"
+              name="resourceFormat"
               render={({ field }) => (
                 <FormItem className="flex justify-center items-center gap-2">
                   <FormLabel>Resource Format: {"  "}</FormLabel>
@@ -211,7 +240,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                 </FormItem>
               )}
             />
-            {form.watch("format") === "file" ? (
+            {form.watch("resourceFormat") === "file" ? (
               <FormField
                 control={form.control}
                 name="resourceFile"
@@ -233,10 +262,10 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                 )}
               />
             ) : null}
-            {form.watch("format") === "link" ? (
+            {form.watch("resourceFormat") === "link" ? (
               <FormField
                 control={form.control}
-                name="link"
+                name="resourceLink"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Resource Link</FormLabel>

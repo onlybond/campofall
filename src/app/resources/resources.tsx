@@ -30,7 +30,7 @@ const getResources = async () => {
   const data: Array<resource> = await res.json();
   return data;
 };
-const page = async ({
+const ResourcesPage = async ({
   searchParams,
 }: {
   searchParams: { [key: string]: string  | string[] | undefined};
@@ -91,4 +91,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default ResourcesPage;

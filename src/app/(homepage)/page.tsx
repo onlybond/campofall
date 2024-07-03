@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ResourceCard from "../resources/components/ResourceCard";
 import Heroanimation from "./components/Heroanimation";
+import ResourcesPage from "../resources/resources";
+import Filters from "../resources/components/Filters";
 export default async function Home() {
   return (
     <div className="flex w-screen container flex-col ">
@@ -46,22 +48,14 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 py-6 h-fit">
+      <div className="flex flex-col relative gap-5 py-6 mt-8 h-fit w-full">
         <div className="flex gap-y-4 items-center w-full justify-between">
           <h1 className="text-6xl font-thin">
             <span className="font-semibold">Resource</span> Links
           </h1>
-
-          <div className="flex flex-row gap-x-4 items-center justify-center">
-            <ArrowLeft className="w-4 h-4 text-primary" />
-            <ArrowRight className="w-4 h-4 text-primary" />
-          </div>
         </div>
-        <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-          <ResourceCard title="test1" description="Lorem" link="" tags={[]} type="" subscription={false}/>
-          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
-          <ResourceCard title="" description="" link="" tags={[]} type="" subscription={false}/>
-        </div>
+        <Filters/>
+        <ResourcesPage searchParams={{"page":"1"}}/>
       </div>
     </div>
   );

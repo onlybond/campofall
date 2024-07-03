@@ -28,16 +28,16 @@ const PaginationControls = ({hasNextPage, hasPreviousPage}: PaginationControlsPr
     <Pagination>
       <PaginationContent>
         <PaginationItem  >
-          <PaginationPrevious onClick={() => {if(hasPreviousPage){router.push(`/resources?page=${Number(page) - 1}&per_page=${per_page}`)}}}></PaginationPrevious>
+          <PaginationPrevious onClick={() => {if(hasPreviousPage){router.push(`?page=${Number(page) - 1}&per_page=${per_page}`)}}}></PaginationPrevious>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink onClick={() => router.push(`/resources?page=1&per_page=${per_page}`)}>{page}</PaginationLink>
+          <PaginationLink onClick={() => router.push(`?page=1&per_page=${per_page}`)}>{page}</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationEllipsis onClick={() => router.push(`/resources?page=2&per_page=${per_page}`)} />
+          <PaginationEllipsis onClick={() => router.push(`?page=2&per_page=${per_page}`)} />
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext onClick={() => {if( hasNextPage){router.push(`/resources?page=${Number(page) + 1}&per_page=${per_page}`)}}}/>
+          <PaginationNext onClick={() => {if( hasNextPage){router.push(`?page=${Number(page) + 1}&per_page=${per_page}`)}}}/>
         </PaginationItem>
       </PaginationContent>
     </Pagination>

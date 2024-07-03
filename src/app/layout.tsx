@@ -26,7 +26,6 @@ export default function RootLayout({
           <Header />
           <ToastProvider>
             <div className="flex">
-              <SideNav />
               {children}
             </div>
           </ToastProvider>

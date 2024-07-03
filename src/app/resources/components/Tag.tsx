@@ -68,7 +68,7 @@ const Tags = ({ label }: TagProps) => {
     if (label === "type") {
       const newSelected = [...selectedType];
       newSelected[index] = !newSelected[index];
-      setSelectedType(newSelected);
+      setSelectedType(newSelected); 
       const searchselectedTypes = types.filter((_, idx) => newSelected[idx]);
       const newParams = new URLSearchParams(searchParams.toString());
       if (searchselectedTypes.length > 0) {
