@@ -1,3 +1,5 @@
+"use client"
+
 import AddResourceTrigger from "./components/AddResourceTrigger";
 import {
   Select,
@@ -8,11 +10,10 @@ import {
   SelectGroup,
 } from "@/components/ui/select";
 import Resources from "./components/Resources";
-import loading from "./loading";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import PaginationControls from "./components/PaginationControls";
 
-export interface resource {
+export interface Resource {
   title: string;
   type: string;
   email: string;
@@ -22,23 +23,33 @@ export interface resource {
   resourcePaid: boolean;
 }
 
-const getResources = async () => {
-  const res = await fetch(
-    "http://localhost:3000/api/getResources",
-    {
-      cache: "no-cache",
-    }
-  );
+const fetchResources = async () => {
+  const { protocol, host } = window.location;
+  const baseUrl = `${protocol}//${host}`;
+  const res = await fetch(`${baseUrl}/api/getResources`, {
+    cache: "no-cache",
+  });
   const data = await res.json();
   return data.data;
 };
 
-const page = async ({
+const Page = ({
   searchParams,
 }: {
-  searchParams: { [key: string]: string  | string[] | undefined};
+  searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const resources = await getResources();
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getResources = async () => {
+      const data = await fetchResources();
+      setResources(data ?? []);
+      setLoading(false);
+    };
+    getResources();
+  }, []);
+
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "9";
 
@@ -47,16 +58,20 @@ const page = async ({
 
   const slicedResources = resources.slice(start, end);
 
-  if (!page)
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!page) {
     return (
-      <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-full">
+      <div className="flex container flex-col mt-36 relative w-full justify-start items-end gap-4 h-full">
         page not found
       </div>
     );
+  }
 
-    
   return (
-    <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-fit ">
+    <div className="flex container flex-col mt-36 relative w-full justify-start items-end gap-4 h-fit">
       <div className="flex w-full justify-between">
         <div>Showing {`${slicedResources.length}`} resources</div>
         <div className="flex gap-4">
@@ -96,4 +111,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default Page;

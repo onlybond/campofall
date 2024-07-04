@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { resource } from "../page";
+import { Resource } from "../page";
 import ResourceCard from "./ResourceCard";
 import { useSearchParams } from "next/navigation";
 
-export default function Resources({ resources }: { resources: resource[] }) {
+export default function Resources({ resources }: { resources: Resource[] }) {
   const searchParams = useSearchParams();
   const [filteredResources, setFilteredResources] =
-    useState<resource[]>(resources);
+    useState<Resource[]>(resources);
   useEffect(() => {
     const typeSearch = searchParams.get("type")?.split(",") || [];
     const tagSearch = searchParams.get("tags")?.split(",") || [];

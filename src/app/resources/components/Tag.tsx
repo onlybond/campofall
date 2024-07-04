@@ -14,20 +14,27 @@ const Tags = ({ label }: TagProps) => {
   const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/getResources?fields=${label}`, {
-      cache: "no-cache",
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.success) {
-          const data = label === "tags" ? response.data.flatMap((item: { tags: string[] }) => item.tags) : response.data.map((item: { type: string }) => item.type);
-          const uniqueTags:any = Array.from(new Set(data));
-          setTags(uniqueTags);
-        }
+    if (typeof window !== "undefined") {
+      const { protocol, host } = window.location;
+      const baseUrl = `${protocol}//${host}`;
+      fetch(`${baseUrl}/api/getResources?fields=${label}`, {
+        cache: "no-cache",
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.success) {
+            const data =
+              label === "tags"
+                ? response.data.flatMap((item: { tags: string[] }) => item.tags)
+                : response.data.map((item: { type: string }) => item.type);
+            const uniqueTags: any = Array.from(new Set(data));
+            setTags(uniqueTags);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
   }, []);
 
   const handleClick = (tag: string) => {
@@ -49,7 +56,9 @@ const Tags = ({ label }: TagProps) => {
       {tags.map((tag, idx) => (
         <div
           className={`px-6 py-2 border rounded-full border-primary cursor-pointer select-none ${
-            tag === selectedTag ? "bg-primary text-white" : "hover:bg-primary/50"
+            tag === selectedTag
+              ? "bg-primary text-white"
+              : "hover:bg-primary/50"
           }`}
           key={idx}
           onClick={() => handleClick(tag)}
