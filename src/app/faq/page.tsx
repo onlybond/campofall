@@ -11,61 +11,61 @@ import { Button } from '@/components/ui/button';
 const FAQ = () => {
     const faqData1 = [
         {
-            question: "What is Webflow and why is it the best website builder?",
-            answer: "Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere."
+            question: "Q. I'm a new designer. What resources on Campofall can help me improve my skills?",
+            answer: "Campofall offers a variety of resources for beginner designers, including design tutorials, UI component libraries, and curated inspiration galleries. You can also explore portfolios of experienced designers for inspiration and learning"
         },
         {
-            question: "What is your favorite template from BRIX Templates?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. How can I showcase my design work on Campofall to attract potential clients?",
+            answer: "Create a strong profile on Campofall that highlights your design skills and experience. Include your portfolio showcasing your best work, along with relevant skills and software knowledge."
         },
         {
-            question: "How do you clone a template from the Showcase?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. I'm struggling to find design inspiration for my current project. Suggestions?",
+            answer: "Campofall offers a vast collection of design inspiration galleries categorized by style, industry, and project type. You can also browse through user portfolios and discover design trends"
         },
         {
-            question: "Why is BRIX Templates the best Webflow agency?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. Can I find unique design tools and plugins on Campofall?",
+            answer: "Yes! Campofall provides access to various design tools and plugins, including free and premium options. You can filter them by category and software compatibility."
         },
         {
-            question: "When was Webflow officially launched?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. How can I collaborate with other designers on Campofall?",
+            answer: "Campofall offers collaboration tools that allow you to share design projects, leave comments, and provide feedback with other designers within your network."
         },
         {
-            question: "How do you integrate Jetboost with Webflow?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. I'm interested in freelance design work. How can Campofall help find freelance gigs?",
+            answer: "Campofall features a freelance marketplace with project listings from clients seeking design services. Create a strong profile and portfolio to attract potential clients, and actively browse projects that match your skills and experience."
         },
     ];
     const faqData2 = [
         {
-            question: "What is Webflow and why is it the best website builder?",
-            answer: "Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere."
+            question: "Q. What kind of code libraries and plugins can I find on Campofall?",
+            answer: "Campofall offers a comprehensive collection of open-source and premium code libraries and plugins across various programming languages and frameworks. You can easily search and download them to enhance your development workflow."
         },
         {
-            question: "What is your favorite template from BRIX Templates?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. I'm looking for a specific UI component for my web project. Does Campofall offer pre-built components?",
+            answer: "Yes, Campofall provides a library of pre-built UI components for various frameworks. These components can save you development time and ensure consistency in your application design."
         },
         {
-            question: "How do you clone a template from the Showcase?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. How can I find freelance development work on Campofall?",
+            answer: "Similar to designers, developers can utilize the freelance marketplace on Campofall. Browse project listings, showcase your skills and experience with a strong profile, and apply for projects that align with your expertise."
         },
         {
-            question: "Why is BRIX Templates the best Webflow agency?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. I'm new to development. Does Campofall offer any resources to help me learn and grow?",
+            answer: "While not directly focused on learning, Campofall offers access to code libraries and components with documentation and examples that can serve as learning resources for aspiring developers"
         },
         {
-            question: "When was Webflow officially launched?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. Can I collaborate with other developers on Campofall on coding projects?",
+            answer: "While Campofall doesn't offer a full-fledged collaborative coding environment, you can leverage the community features to connect with other developers, share code snippets, and discuss technical challenges."
         },
         {
-            question: "How do you integrate Jetboost with Webflow?",
-            answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            question: "Q. Are there any specific features on Campofall that benefit developers working with APIs?",
+            answer: " Depending on Campofall's functionalities, you can explore if it offers API documentation search, code snippets for specific APIs, or community forums for API integration discussions."
         },
     ];
 
     return (
         <section className='w-[100%]'>
             <main className="flex flex-col gap-[80px] items-center justify-center pt-[80px] pb-[148px]">
-                <div className='h-[140px] w-[200px] text-center text-[65px] font-bold leading-[23.784px] bg-cover bg-center'
+                <div className='h-[140px] w-[200px] leading-[23.784px] bg-cover bg-center'
                     style={{ backgroundImage: 'url("/assets/faq.png")' }}></div>
                 <div className='w-[90%] flex  justify-around'>
                     <div className=' h-full w-[40%]'>
@@ -73,10 +73,10 @@ const FAQ = () => {
                             {faqData1.map((item, index) => (
                                 <div key={index} >
                                     <AccordionItem value={`item-${index}`}>
-                                        <AccordionTrigger className="text-[18.687px]">
+                                        <AccordionTrigger className="text-[18.687px] text-left">
                                             {item.question}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-[15.29px]">
+                                        <AccordionContent className="text-[15.29px] text-left">
                                             {item.answer}
                                         </AccordionContent>
                                     </AccordionItem>
@@ -89,10 +89,10 @@ const FAQ = () => {
                             {faqData2.map((item, index) => (
                                 <div key={index} >
                                     <AccordionItem value={`item-${index}`}>
-                                        <AccordionTrigger className="text-[18.687px]">
+                                        <AccordionTrigger className="text-[18.687px] text-left">
                                             {item.question}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-[15.29px]">
+                                        <AccordionContent className="text-[15.29px] text-left">
                                             {item.answer}
                                         </AccordionContent>
                                     </AccordionItem>
@@ -139,7 +139,7 @@ const FAQ = () => {
                     </div>
                     <div className='w-6/12 flex flex-col justify-end items-end'>
                         <Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-4" />
-                        <p className='opacity-60 w-6/12 p-2 text-right'>Don't know where to get your car tinted? Logoipsum — practical, safe, and affordable.</p>
+                        <p className='opacity-60 w-6/12 p-2 text-right'>Don&apos;t know where to get your car tinted? Logoipsum — practical, safe, and affordable.</p>
                         <p className='opacity-60'>© 2023 — Copyright</p>
                     </div>
                 </div>
