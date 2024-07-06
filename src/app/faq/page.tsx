@@ -103,25 +103,24 @@ const FAQ = () => {
                 </div>
             </main>
 
-            <footer className="px-[152px] py-[80px] w-full bg-[#131313]">
-                <div className="flex items-center justify-around w-full">
-                    <div className='w-6/12'>
+            <footer className="w-full pb-[5%] pt-[5%] bg-[#131313]">
+                <div className="flex items-center justify-between mx-[7%]">
+                    <div>
                         <p className="text-[40px]">Do you have</p>
                         <p className="text-[40px]">any questions?</p>
                         <p className='pt-[16px] pb-[40px]'>Feel free to send us your questions or request a free consultation.</p>
                         <Button className="text-white">Send a message</Button>
                     </div>
-                    <div className='w-4/12'>
+                    <div className='w-[30%]'>
                         <p className='text-base'><span className=" text-[#F37121] text-[28.28px]">/</span>It is necessary to wash the car before tinting, as it affects the quality of the work.</p>
                     </div>
                 </div>
-                <div className='pt-16'></div>
-                {/* <div className='px-10'><hr /></div> */}
-                <div className='px-14'><hr /></div>
-                <div className='pt-4 px-14'><p>Disclaimer +</p></div>
-                <div className="flex items-center justify-around w-full pt-[96px]">
-                    <div className='w-4/12'>
-                        <p className="pb-12">Contacts</p>
+
+                <div className='px-[5%] mt-[4%]'><hr /></div>
+                <div className='pt-4 px-[5%]'><p>Disclaimer +</p></div>
+                <p className="text-[20px] mx-[5%] mt-[4%]">Contacts</p>
+                <div className="flex items-center justify-between mx-[5%] mt-[2.3%]">
+                    <div className='w-[30%]'>
                         <div className='flex justify-between'>
                             <div>
                                 <p className='opacity-60 pb-3'>Sign up</p>
@@ -133,12 +132,12 @@ const FAQ = () => {
                             </div>
                         </div>
                         <div>
-                            <p className='opacity-60 pb-3 pt-12'>Email</p>
+                            <p className='opacity-60 pb-3 pt-[8%]'>Email</p>
                             <p>info@campofall.com</p>
                         </div>
                     </div>
                     <div className='w-6/12 flex flex-col justify-end items-end'>
-                        <Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-4" />
+                        <div><Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-[3%]" /></div>
                         <p className='opacity-60 w-6/12 p-2 text-right'>Don&apos;t know where to get your car tinted? Logoipsum — practical, safe, and affordable.</p>
                         <p className='opacity-60'>© 2023 — Copyright</p>
                     </div>
