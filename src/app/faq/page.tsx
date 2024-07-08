@@ -64,11 +64,11 @@ const FAQ = () => {
 
     return (
         <section className='w-[100%]'>
-            <main className="flex flex-col gap-[80px] items-center justify-center pt-[80px] pb-[148px]">
-                <div className='h-[140px] w-[200px] leading-[23.784px] bg-cover bg-center'
+            <main className="flex flex-col items-center justify-center pt-[3%] pb-[12%]">
+                <div className='h-[140px] w-[200px] leading-[23.784px] bg-cover bg-center mb-[3%]'
                     style={{ backgroundImage: 'url("/assets/faq.png")' }}></div>
-                <div className='w-[90%] flex  justify-around'>
-                    <div className=' h-full w-[40%]'>
+                <div className='w-[90%] flex flex-col md:flex-row justify-around'>
+                    <div className='w-full md:w-[40%] mb-8 md:mb-0'>
                         <Accordion type="single" collapsible>
                             {faqData1.map((item, index) => (
                                 <div key={index} >
@@ -84,7 +84,7 @@ const FAQ = () => {
                             ))}
                         </Accordion>
                     </div>
-                    <div className=' h-full w-[40%]'>
+                    <div className='w-full md:w-[40%] mb-8 md:mb-0'>
                         <Accordion type="single" collapsible>
                             {faqData2.map((item, index) => (
                                 <div key={index} >
@@ -103,24 +103,24 @@ const FAQ = () => {
                 </div>
             </main>
 
-            <footer className="w-full pb-[5%] pt-[5%] bg-[#131313]">
-                <div className="flex items-center justify-between mx-[7%]">
-                    <div>
-                        <p className="text-[40px]">Do you have</p>
-                        <p className="text-[40px]">any questions?</p>
-                        <p className='pt-[16px] pb-[40px]'>Feel free to send us your questions or request a free consultation.</p>
+            <footer className="w-full py-[5%] bg-[#131313]">
+                <div className="flex flex-col md:flex-row items-center justify-between mx-[7%]">
+                    <div className="text-center md:text-left mb-10 md:mb-0">
+                        <p className="text-[36px] sm:text-[40px]">Do you have</p>
+                        <p className="text-[36px] sm:text-[40px]">any questions?</p>
+                        <p className='pt-4 pb-9'>Feel free to send us your questions or request a free consultation.</p>
                         <Button className="text-white">Send a message</Button>
                     </div>
-                    <div className='w-[30%]'>
-                        <p className='text-base'><span className=" text-[#F37121] text-[28.28px]">/</span>It is necessary to wash the car before tinting, as it affects the quality of the work.</p>
+                    <div className='w-full md:w-1/3 text-center md:text-right'>
+                        <p className='text-base'><span className="text-[#F37121] text-3xl">/</span>It is necessary to wash the car before tinting, as it affects the quality of the work.</p>
                     </div>
                 </div>
 
                 <div className='px-[5%] mt-[4%]'><hr /></div>
-                <div className='pt-4 px-[5%]'><p>Disclaimer +</p></div>
-                <p className="text-[20px] mx-[5%] mt-[4%]">Contacts</p>
-                <div className="flex items-center justify-between mx-[5%] mt-[2.3%]">
-                    <div className='w-[30%]'>
+                <div className='pt-3 px-[5%]'><p>Disclaimer +</p></div>
+                <p className="text-xl mx-[5%] mt-8 md:mt-[5%]">Contacts</p>
+                <div className="flex flex-col md:flex-row items-center justify-between mx-[5%] mt-6 md:mt-5">
+                    <div className='w-full md:w-1/3 mb-10 md:mb-0'>
                         <div className='flex justify-between'>
                             <div>
                                 <p className='opacity-60 pb-3'>Sign up</p>
@@ -132,13 +132,15 @@ const FAQ = () => {
                             </div>
                         </div>
                         <div>
-                            <p className='opacity-60 pb-3 pt-[8%]'>Email</p>
+                            <p className='opacity-60 pb-3 pt-8'>Email</p>
                             <p>info@campofall.com</p>
                         </div>
                     </div>
-                    <div className='w-6/12 flex flex-col justify-end items-end'>
-                        <div><Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-[3%]" /></div>
-                        <p className='opacity-60 w-6/12 p-2 text-right'>Don&apos;t know where to get your car tinted? Logoipsum — practical, safe, and affordable.</p>
+                    <div className='w-full md:w-6/12 flex flex-col items-center md:items-end'>
+                        <div>
+                            <Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-3" />
+                        </div>
+                        <p className='opacity-60 w-10/12 p-2 text-center md:text-right md:w-6/12'>Don&apos;t know where to get your car tinted? Logoipsum — practical, safe, and affordable.</p>
                         <p className='opacity-60'>© 2023 — Copyright</p>
                     </div>
                 </div>
