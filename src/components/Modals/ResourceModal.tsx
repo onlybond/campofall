@@ -109,25 +109,45 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const form = useForm<z.infer<typeof resourceSchema>>({
     resolver: zodResolver(resourceSchema),
+
     defaultValues: {
       resourceTitle: "",
       resourceDescription: "",
-      resourceType: "", 
+      resourceType: "",
       resourceFormat: "link",
-      resourceLink: undefined, 
-      resourceFile: undefined, 
+      resourceLink: undefined,
+      resourceFile: undefined,
     },
   });
 
   const handleSubmit = async (data: z.infer<typeof resourceSchema>) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  try{
+    await fetch("/api/newResources", {
+      method: "POST",
+      body: JSON.stringify({
+        title: data.resourceTitle,
+        description: data.resourceDescription,
+        type: data.resourceType,
+        email: "email.com@emal.com",
+        tags: ["tag1", "tag2"],
+        resourceLink: data.resourceLink,
+        resourcePaid: "false",
+
+      }),
+    });
     console.log(data);
-    form.reset();
-    setOpenModal(false);
     toast.success("Resource submitted successfully", {
       position: "top-right",
       autoClose: 5000,
     });
+  }
+  catch(error){
+     form.reset();
+    toast.error("Error submitting resource", {
+      position: "top-right",
+      autoClose: 5000,
+    });
+   }
   };
 
   const isLoading = form.formState.isSubmitting;

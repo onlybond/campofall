@@ -11,6 +11,7 @@ import Resources from "./components/Resources";
 import loading from "./loading";
 import { Suspense } from "react";
 import PaginationControls from "./components/PaginationControls";
+
 export interface resource {
   resourceTitle: string;
   resourceURL: string;
