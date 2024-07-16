@@ -3,26 +3,28 @@ import { Input } from "@/components/ui/input";
 
 export default function Page() {
   return(
-    <div className="flex container justify-center items-center h-screen">
-      <div className="flex w-[70%] h-[480px] p-[20px] rounded-[25px] bg-[#131313]">
-        <div className="w-[50%] h-full rounded-[20px]">
-            <img src="/assets/sign-up.png" alt="Not Found" className="h-full" />
-        </div>
-        <div className="w-[50%] h-full rounded-[20px] px-[40px] py-[10px] ">
-            <div className="h-[40px] flex flex-col justify-center items-center mt-4">
-            <img src="/assets/logo.png" alt="" className="h-full"/>
-            <p className="text-[9px]">We are glad to see you back with us</p>
-            </div>
-            <Input type="text" placeholder="Username" className="mt-[2rem]"/>
-            <Input type="password" placeholder="Password" className="mt-[10px]"/>
-            <Input type="password" placeholder="Re-enter Password" className="mt-[10px]"/>
-            <Button className="w-full mt-[20px]">NEXT</Button>
-            <div className="flex justify-end">
-              <p className="underline text-[0.75rem] text-[#ff6200]">Forgot Password?</p>
-            </div>
-            <Button variant='outline' className="w-full mt-[20px] border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" /><span className="text-white">&nbsp;Login with&nbsp;</span>Google</Button>
-            <Button variant='outline' className="w-full mt-[20px] border-[#ff6200] text-[#ff6200] bg-[#131313]">Sign in</Button>
+    <div className="h-[90vh] w-full flex items-center justify-center">
+      <div className="w-4/5 h-5/6  lg:h-5/6 flex rounded-[54px] bg-[#131313]">
+        <div className="w-3/6 h-full flex justify-center hidden lg:block">
+          <img src="/assets/sign-up.png" alt="Not Found" className="h-full w-full p-[40px]"/>
+        </div> 
+        <div className="  w-full lg:w-3/6 h-full flex flex-col items-center justify-center">
+         <div className=" flex flex-col justify-center items-center">
+            <img src="/assets/logo.png" alt="" className="h-[50px] lg:h-[70px]"/>
+            <p className="text-[10px] md:text-[12px] mt-1">We are glad to see you back with us</p>
           </div>
+          <form className="w-full flex flex-col items-center">
+          <Input type="text" placeholder="Username" className="w-8/12 md:w-7/12 mt-[10px] text-black"/>
+          <Input type="password" placeholder="Password" className="w-8/12 md:w-7/12 mt-[10px] text-black"/>
+          <Input type="password" placeholder="Re-enter Password" className="w-8/12 md:w-7/12 mt-[10px] text-black"/>
+          <Button type="submit" className="w-8/12 md:w-7/12 mt-[20px]">NEXT</Button>
+          </form>
+          <div className="flex justify-end w-8/12 md:w-7/12 mt-[5px]">
+            <p className="underline text-[0.75rem] text-[#ff6200] hover:cursor-pointer">Forgot Password?</p>
+          </div>
+          <Button variant='outline' className="w-8/12 md:w-7/12 mt-[20px] border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" /><span className="text-white">&nbsp;Login with&nbsp;</span>Google</Button>
+          <Button variant='outline' className="w-8/12 md:w-7/12 mt-[20px] border-[#ff6200] text-[#ff6200] bg-[#131313]">Sign in</Button>
+        </div>       
       </div>
     </div>
   ) 
