@@ -19,7 +19,7 @@ const Filters = () => {
   }
   return (
     <div className="w-full sticky p-4 z-[1] bg-[#363636]">
-      <div className="flex gap-4 ml-16 items-center">
+      <div className="flex gap-4  items-center">
         <span className="font-bold text-2xl">Filters</span>
         <RadioGroup className="flex " value={subscriptionSearch||undefined}  onValueChange={handleSubscriptionChange}>
           <div className="space-x-2">

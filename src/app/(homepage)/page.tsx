@@ -55,7 +55,7 @@ export default async function Home() {
           </h1>
         </div>
         <Filters/>
-        <ResourcesPage searchParams={{"page":"1"}}/>
+        <ResourcesPage/>
       </div>
     </div>
   );
