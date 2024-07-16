@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ResourceCard from "../resources/components/ResourceCard";
+import loading from "../resources/loading";
 import Heroanimation from "./components/Heroanimation";
 import ResourcesPage from "../resources/resources";
 import Filters from "../resources/components/Filters";
+import { Suspense } from "react";
 export default async function Home() {
   return (
     <div className="flex w-screen container flex-col ">
@@ -48,15 +50,17 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col relative gap-5 py-6 mt-8 h-fit w-full">
-        <div className="flex gap-y-4 items-center w-full justify-between">
-          <h1 className="text-6xl font-thin">
-            <span className="font-semibold">Resource</span> Links
-          </h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="flex flex-col relative gap-5 py-6 mt-8 h-fit w-full">
+          <div className="flex gap-y-4 items-center w-full justify-between">
+            <h1 className="text-6xl font-thin">
+              <span className="font-semibold">Resource</span> Links
+            </h1>
+          </div>
+          <Filters />
+          <ResourcesPage />
         </div>
-        <Filters/>
-        <ResourcesPage/>
-      </div>
+      </Suspense>
     </div>
   );
 }
