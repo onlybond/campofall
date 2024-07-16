@@ -70,9 +70,9 @@ const FAQ = () => {
                 <div className='w-[90%] flex flex-col md:flex-row justify-around'>
                     <div className='w-full md:w-[40%] mb-8 md:mb-0'>
                         <Accordion type="single" collapsible>
-                            {faqData1.map((item, index) => (
-                                <div key={index} >
-                                    <AccordionItem value={`item-${index}`}>
+                            {faqData1.map((item, idx) => (
+                                <div key={idx} >
+                                    <AccordionItem value={`item-${idx}`}>
                                         <AccordionTrigger className="text-[18.687px] text-left">
                                             {item.question}
                                         </AccordionTrigger>
@@ -86,9 +86,9 @@ const FAQ = () => {
                     </div>
                     <div className='w-full md:w-[40%] mb-8 md:mb-0'>
                         <Accordion type="single" collapsible>
-                            {faqData2.map((item, index) => (
-                                <div key={index} >
-                                    <AccordionItem value={`item-${index}`}>
+                            {faqData2.map((item, idx) => (
+                                <div key={idx} >
+                                    <AccordionItem value={`item-${idx}`}>
                                         <AccordionTrigger className="text-[18.687px] text-left">
                                             {item.question}
                                         </AccordionTrigger>
