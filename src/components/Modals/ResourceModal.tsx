@@ -53,8 +53,7 @@ const resourceSchema = z.object({
     .string()
     .url({
       message: "Invalid URL ex: https://example.com (dont forget https://)",
-    })
-    .optional(),
+    }),
   resourceType: z.enum(resourceTypes, {
     message: "Please select a resource type",
   }),
@@ -130,7 +129,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
   return (
     <Dialog open={openModal} onOpenChange={handleClose}>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className="flex flex-col justify-start items-start bg-[#131313] overflow-y-scroll max-h-full">
+      <DialogContent className="flex flex-col justify-start items-start bg-[#131313] overflow-y-auto max-h-full">
         <DialogHeader>
           <DialogTitle>Submit Resource</DialogTitle>
           <DialogDescription className="text-primary">
@@ -182,13 +181,13 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-muted/10 focus-visible:ring-primary">
                         <SelectValue placeholder="Select the Resource Type" />
                       </SelectTrigger>
                       <SelectContent>
                         {resourceTypes.map((type) => (
                           <SelectItem
-                            className="hover:bg-primary"
+                            className="bg-muted/10 focus-visible:ring-primary"
                             key={type}
                             value={type}
                           >
@@ -209,7 +208,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className=""
+                      className="bg-muted/10 focus-visible:ring-primary"
                       placeholder="Resource Link"
                       {...field}
                     />
@@ -230,19 +229,19 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex"
+                      className="flex gap-2"
                     >
-                      <FormItem>
+                      <FormItem className="flex items-center justify-center gap-x-2">
                         <FormControl>
                           <RadioGroupItem value="Yes" />
                         </FormControl>
-                        <FormLabel>Yes</FormLabel>
+                        <FormLabel className="h-full">Yes</FormLabel>
                       </FormItem>
-                      <FormItem>
+                      <FormItem className="flex items-center justify-center gap-x-2">
                         <FormControl>
                           <RadioGroupItem value="No" />
                         </FormControl>
-                        <FormLabel>No</FormLabel>
+                        <FormLabel className="h-full">No</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
@@ -346,7 +345,7 @@ const ResourceModal = ({ children }: { children: React.ReactNode }) => {
             />
             <Button
               type="submit"
-              className="text-foreground font-bold mt-4 disabled:cursor-not-allowed"
+              className="text-foreground font-bold disabled:cursor-not-allowed"
               disabled={isLoading}
             >
               {isLoading ? (
