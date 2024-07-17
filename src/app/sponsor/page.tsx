@@ -88,7 +88,7 @@ const sponsor = () => {
                             <p>info@campofall.com</p>
                         </div>
                     </div>
-                    <div className='w-full md:w-6/12 flex flex-col items-center md:items-end'>
+                    <div className='w-full md:w-6/12 flex flex-col items-center md:'>
                         <div>
                             <Image src="/assets/logo.png" alt="campofall" width={320} height={80} className="pb-3" />
                         </div>

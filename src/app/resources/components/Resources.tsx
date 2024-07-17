@@ -12,15 +12,14 @@ export default function Resources({ resources }: { resources: resource[] }) {
   useEffect(() => {
     const typeSearch = searchParams.get("type")?.split(",") || [];
     const tagSearch = searchParams.get("tags")?.split(",") || [];
-    const SubSearch = searchParams.get("subscription") || "";
-    console.log(SubSearch)
+    const SubSearch = searchParams.get("resourcePaid") || "";
     const filtered = resources.filter((resource) => {
       const typeMatch =
         typeSearch.length === 0 || typeSearch.includes(resource.resourceType);
       const tagMatch =
         tagSearch.length === 0 ||
         tagSearch.includes(resource.resourceTags.toString());
-      const SubMatch = SubSearch === "" ||resource.subscription === (SubSearch === "true");
+      const SubMatch = SubSearch === "" ||resource.resourcePaid === (SubSearch === "true");
       return typeMatch && tagMatch && SubMatch;
     });
 
@@ -36,10 +35,10 @@ export default function Resources({ resources }: { resources: resource[] }) {
               key={idx}
               title={resource.resourceTitle}
               description={resource.resourceDescription}
-              link={resource.resourceURL}
+              link={resource.resourceLink}
               type={resource.resourceType}
               tags={resource.resourceTags}
-              subscription={resource.subscription}
+              resourcePaid={resource.resourcePaid}
             />
           ))}
         </div>

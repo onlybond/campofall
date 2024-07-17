@@ -52,12 +52,6 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          {/* <Link
-            href="/"
-            className={`${poppins.className} font-extralight text-base`}
-          >
-            NewsLetter
-          </Link> */}
           <Link
             href="/"
             className={`${poppins.className} font-extralight text-base hover:opacity-50`}

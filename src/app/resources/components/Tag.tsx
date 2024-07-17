@@ -16,10 +16,11 @@ const Tags = ({ label }: TagProps) => {
   const [selectedTags, setSelectedTags] = useState<Array<boolean>>([]);
   const [types, setTypes] = useState<Array<string>>([]);
   useEffect(() => {
-    fetch("https://6652d529813d78e6d6d656d1.mockapi.io/products", {
+    fetch("/api/getResources", {
       cache: "no-cache",
     })
       .then((res) => res.json())
+      .then(data=> data.data)
       .then((data) => {
         let initialSelected: Array<boolean> = [];
         if (label === "type") {
@@ -60,7 +61,7 @@ const Tags = ({ label }: TagProps) => {
               initialSelected[index] = true;
             }
           });
-          setSelectedTags(initialSelected); // Initialize selected state
+          setSelectedTags(initialSelected);
         }
       });
   }, [label, searchParams]);

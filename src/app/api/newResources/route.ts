@@ -4,35 +4,10 @@ import resourceModel from "@/app/models/resource";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
-
   try {
-    const {
-      title,
-      type,
-      email,
-      tags,
-      description,
-      resourceLink,
-      resourcePaid,
-    } = await request.json();
-
-    const newResource = new resourceModel({
-      title,
-      type,
-      email,
-      tags,
-      description,
-      resourceLink,
-      resourcePaid,
-    });
-
-    console.log("New resource: ", newResource);
-
-    return NextResponse.json({
-      success: true,
-      message: "Resource created successfully",
-      data:newResource
-    });
+    const data = await request.json();
+    const resource = await resourceModel.create(data);
+    return NextResponse.json({ resource }, { status: 201 });
   } catch (error) {
     return NextResponse.json({
       success: false,

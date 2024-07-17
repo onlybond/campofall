@@ -8,7 +8,7 @@ type LayoutProps = {
 export default function resourceTemplate({ children }: LayoutProps) {
   return (
     <div className="w-screen flex flex-col min-h-screen">
-      <Filters />
+      {/* <Filters /> */}
       <div className="flex-grow">{children}</div> 
     </div>
   );

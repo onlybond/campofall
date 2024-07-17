@@ -2,11 +2,11 @@ import mongoose, { Document, Model, Schema } from "mongoose";
 
 // Define the TypeScript interface for the resource document
 export interface IResource extends Document {
-  title: string;
-  type: string;
+  resourceTitle: string;
+  resourceType: string;
   email: string;
-  tags: string[];
-  description: string;
+  resourceTags: string[];
+  resourceDescription: string;
   resourceLink: string;
   resourcePaid: boolean;
 }
@@ -14,11 +14,11 @@ export interface IResource extends Document {
 // Define the Mongoose schema
 const resourceSchema: Schema<IResource> = new Schema(
   {
-    title: { type: String, required: true },
-    type: { type: String, required: true },
+    resourceTitle: { type: String, required: true },
+    resourceType: { type: String, required: true },
     email: { type: String, required: true },
-    tags: { type: [String], required: true },
-    description: { type: String, required: true },
+    resourceTags: { type: [String], required: true },
+    resourceDescription: { type: String, required: true },
     resourceLink: { type: String, required: true },
     resourcePaid: { type: Boolean, required: true },
   },

@@ -3,8 +3,8 @@ export interface resource {
   resourceDescription: string;
   resourceType: string;
   resourceTags: string[];
-  subscription: boolean;
+  resourcePaid: boolean;
   referenceMailId:string;
-  resourceURL?: string;
+  resourceLink?: string;
   resourceFile?: File | null;
 }

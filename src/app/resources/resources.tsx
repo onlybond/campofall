@@ -13,27 +13,28 @@ import { ChevronRight } from "lucide-react";
 
 export interface resource {
   resourceTitle: string;
-  resourceURL: string;
+  resourceLink: string;
   resourceDescription: string;
   resourceType: string;
   resourceTags: string[];
-  subscription: boolean;
+  resourcePaid: boolean;
 }
 
 const getResources = async () => {
   const res = await fetch(
-    "https://6652d529813d78e6d6d656d1.mockapi.io/products",
+    "http:localhost:3000/api/getResources",
     {
       cache: "no-cache",
     }
   );
-  const data: Array<resource> = await res.json();
-  return data;
+  const data = await res.json();
+  const resources:Array<resource> = data.data
+  return resources
 };
 const ResourcesPage = async () => {
   const resources = await getResources();
   return (
-    <div className="flex container flex-col mt-36 relative w-full  justify-start items-end gap-4 h-fit ">
+    <div className="flex container flex-col mt-36 relative w-full  justify-start  gap-4 h-fit ">
       <div className="flex w-full justify-between">
         <div className="flex gap-4">
           <div className="flex justify-center items-center gap-2">
