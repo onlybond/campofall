@@ -6,6 +6,7 @@ import SideNav from "@/components/SideNav";
 import { poppins } from "@/app/ui/fonts";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ToastProvider from "@/lib/react-toastify/ToastProvider";
+import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "CAMPofall - Your Design Resource Hub",
   description:
@@ -29,6 +30,7 @@ export default function RootLayout({
               {children}
             </div>
           </ToastProvider>
+          <Footer/>
         </ThemeProvider>
       </body>
     </html>

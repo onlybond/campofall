@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 export default function Page() {
   return(
     <div className="h-[90vh] w-full flex items-center justify-center">
       <div className="w-4/5 h-5/6  lg:h-5/6 flex rounded-[54px] bg-[#131313]">
-        <div className="w-3/6 h-full flex justify-center hidden lg:block">
-          <img src="/assets/sign-up.png" alt="Not Found" className="h-full w-full p-[40px]"/>
+        <div className="w-3/6 h-full  justify-center hidden lg:block">
+          <Image src="/assets/sign-up.png" alt="Not Found" width={1000} height={100} className="h-full w-full p-10"/>
         </div> 
         <div className="  w-full lg:w-3/6 h-full flex flex-col items-center justify-center">
          <div className=" flex flex-col justify-center items-center">
             <img src="/assets/logo.png" alt="" className="h-[50px] lg:h-[70px]"/>
-            <p className="text-[10px] md:text-[12px] mt-1">We are glad to see you back with us</p>
+            <p className="text-xs md:text-[12px] mt-1">We are glad to see you back with us</p>
           </div>
           <form className="w-full flex flex-col items-center">
           <Input type="text" placeholder="Username" className="w-8/12 md:w-7/12 mt-[10px] text-black"/>

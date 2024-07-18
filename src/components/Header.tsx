@@ -12,7 +12,7 @@ const Header = () => {
     <div className="w-full sticky top-0 py-6 z-[2] bg-[#131313]">
       <div className="container flex justify-between">
         <div className=" flex flex-col items-center gap-4  md:flex-row">
-          <Link href="href">
+          <Link href="/">
             <Image
               priority
               src="/assets/logo.png"
@@ -38,7 +38,7 @@ const Header = () => {
           </div> */}
         </div>
         <div className="gap-4 items-center hidden md:flex">
-          <Link
+          {/* <Link
             href=""
             className="flex gap-2 items-center text-[#fff4] border-white text-sm rounded-full border pl-4 pr-2 py-1"
           >
@@ -51,12 +51,12 @@ const Header = () => {
                 K
               </span>
             </div>
-          </Link>
+          </Link> */}
           <Link
-            href="/"
+            href="/sponsor"
             className={`${poppins.className} font-extralight text-base hover:opacity-50`}
           >
-            Sponser
+            Sponsor
           </Link>
           <Link href={"/sign-up"}>
             <Button

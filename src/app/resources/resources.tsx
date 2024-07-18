@@ -1,7 +1,6 @@
 import AddResourceTrigger from "./components/AddResourceTrigger";
 import Resources from "./components/Resources";
 import { ChevronRight } from "lucide-react";
-
 export interface resource {
   resourceTitle: string;
   resourceLink: string;
@@ -10,16 +9,16 @@ export interface resource {
   resourceTags: string[];
   resourcePaid: boolean;
 }
-const getResources = async () => {
-  const res = await fetch(`/api/getResources`, {
-    cache: "no-cache",
-  });
-  const data = await res.json();
-  const resources: Array<resource> = data.data;
-  return resources;
-};
+// const getResources = async () => {
+//   const res = await fetch(`http:localhost:3000/api/getResources`, {
+//     cache: "no-cache",
+//   });
+//   const data = await res.json();
+//   const resources: Array<resource> = data.data;
+//   return resources;
+// };
 const ResourcesPage = async () => {
-  const resources = await getResources();
+  // const resources = await getResources();
   return (
     <div className="flex container flex-col mt-36 relative w-full  justify-start  gap-4 h-fit ">
       <div className="flex w-full justify-between">
@@ -30,7 +29,7 @@ const ResourcesPage = async () => {
         </div>
       </div>
       <div>
-        <Resources resources={resources} />
+        {/* <Resources resources={resources} /> */}
       </div>
     </div>
   );
