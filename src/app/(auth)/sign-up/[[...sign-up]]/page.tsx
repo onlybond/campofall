@@ -17,13 +17,13 @@ export default function Page() {
           <form className="w-full flex flex-col items-center">
           <Input type="text" placeholder="Username" className="w-8/12 lg:w-10/12 xl:w-8/12 mt-6"/>
           <Input type="password" placeholder="Password" className="w-8/12 lg:w-10/12 xl:w-8/12 mt-3 lg:mt-4"/>
-          <Input type="password" placeholder="Re-enter Password" className="w-8/12 lg:w-10/12 xl:w-8/12 mt-3 lg:mt-4 text-black"/>
+          <Input type="password" placeholder="Re-enter Password" className="w-8/12 lg:w-10/12 xl:w-8/12 mt-3 lg:mt-4"/>
           <Button type="submit" className="w-8/12 text-[1rem] lg:w-10/12 xl:w-8/12 mt-5">NEXT</Button>
           </form>
           <div className="flex justify-end w-8/12 lg:w-10/12 xl:w-8/12 mt-2">
             <p className="underline text-[1rem] text-[#ff6200] hover:cursor-pointer">Forgot Password?</p>
           </div>
-          <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-6 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" className="mr-2" />&nbsp;Login with Google</Button>
+          {/* <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-6 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" className="mr-2" />&nbsp;Login with Google</Button> */}
           <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-5 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313]">Sign in</Button>
         </div>       
       </div>

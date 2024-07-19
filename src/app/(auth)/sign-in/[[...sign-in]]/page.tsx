@@ -18,7 +18,7 @@ export default function Page() {
         <div className="flex justify-end w-8/12 lg:w-10/12 xl:w-8/12 mt-2">
           <p className="underline text-[1rem] text-[#ff6200] hover:cursor-pointer">Forgot Password?</p>
         </div>
-        <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-6 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" className="mr-2" />&nbsp;Login with Google</Button>
+        {/* <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-6 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313] login-with hover:text-[#ff6200]"><img src="/assets/google.png" alt="" className="mr-2" />&nbsp;Login with Google</Button> */}
         <Button variant='outline' className="w-8/12 lg:w-10/12 xl:w-8/12 mt-5 text-sm border-[#ff6200] text-[#ff6200] bg-[#131313]">Sign up</Button>
       </div>       
       <div className="w-3/6 h-full  justify-center hidden lg:block ">
