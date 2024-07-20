@@ -4,13 +4,14 @@ import "./globals.css";
 import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
 import { poppins } from "@/app/ui/fonts";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import ToastProvider from "@/lib/react-toastify/ToastProvider";
+import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react"
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Campofall",
-  description: "A ToolKit for Designers and Developers",
+  title: "CAMPofall - Your Design Resource Hub",
+  description:
+    "Join the Campofall community and connect with fellow designers and developers. Share your work, get feedback, and collaborate on exciting projects. ",
 };
 
 export default function RootLayout({
@@ -19,17 +20,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl={"/"}>
-      <html lang="en">
-        <body className={`${poppins.className} text-white bg-black`}>
+    <html lang="en">
+      <body
+        className={`${poppins.className} text-white bg-black flex flex-col`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Header />
-          <div className="flex h-screen">
-            <SideNav />
-            {children}
-            <Analytics />
-          </div>
-        </body>
-      </html>
-    </ClerkProvider>
+          <ToastProvider>
+            <div className="flex">
+              {children}
+            </div>
+          </ToastProvider>
+          <Footer/>
+        </ThemeProvider>
+      </body>
+    </html>
+
   );
 }
