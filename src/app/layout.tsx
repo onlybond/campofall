@@ -7,6 +7,7 @@ import { poppins } from "@/app/ui/fonts";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ToastProvider from "@/lib/react-toastify/ToastProvider";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react"
 export const metadata: Metadata = {
   title: "CAMPofall - Your Design Resource Hub",
   description:
@@ -34,5 +35,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+
   );
 }
