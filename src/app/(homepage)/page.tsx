@@ -50,13 +50,13 @@ export default async function Home() {
         </div>
       </div>
       <Suspense fallback={<div className="w-screen h-screen bg-[rgba(0,0,0,0,4)]]">Loading...</div>}>
-        <div className="flex flex-col relative gap-5 py-6 mt-8 h-fit w-full">
+        <div className="flex flex-col relative gap-5 py-6 my-16 h-fit w-full">
           <div className="flex gap-y-4 items-center w-full justify-between">
             <h1 className="text-6xl font-thin">
               <span className="font-semibold">Resource</span> Links
             </h1>
           </div>
-          {/* <Filters /> */}
+          <Filters />
           <ResourcesPage />
         </div>
       </Suspense>

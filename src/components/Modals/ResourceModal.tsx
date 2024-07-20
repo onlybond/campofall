@@ -52,7 +52,7 @@ const resourceSchema = z.object({
   resourceLink: z
     .string()
     .url({
-      message: "Invalid URL ex: https://example.com (dont forget https://)",
+      message: "Invalid URL ex: https://example.com",
     }),
   resourceType: z.enum(resourceTypes, {
     message: "Please select a resource type",

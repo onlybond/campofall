@@ -20,7 +20,7 @@ const ResourcesPage =  async () => {
   const host = headers().get("host")
   const resources = host && await getResources(host);  
   return (
-    <div className="flex container flex-col mt-36 relative w-full  justify-start  gap-4 h-fit ">
+    <div className="flex container flex-col relative w-full  justify-start  gap-4 h-fit ">
       <div className="flex w-full justify-between">
         <div className="flex gap-4">
           <AddResourceTrigger>
