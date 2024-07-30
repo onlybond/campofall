@@ -15,13 +15,13 @@ const Filters = () => {
   const subscriptionSearch = useSearchParams().get("subscription");
   const handleSubscriptionChange = (value: string) => {
     router.push(`${href}?subscription=${value}`);
-    
+
   }
   return (
     <div className="w-full sticky p-4 z-[1] bg-[#363636]">
       <div className="flex gap-4  items-center">
         <span className="font-bold text-2xl">Filters</span>
-        <RadioGroup className="flex " value={subscriptionSearch||undefined}  onValueChange={handleSubscriptionChange}>
+        <RadioGroup className="flex " value={subscriptionSearch || undefined} onValueChange={handleSubscriptionChange}>
           <div className="space-x-2">
             <RadioGroupItem value="free" id="free" />
             <Label htmlFor="free" className="cursor-pointer">
@@ -73,7 +73,7 @@ const Filters = () => {
             </Suspense>
           </div>
         </div>
-        <Button variant="outline" onClick={() => {}}>
+        <Button variant="outline" onClick={() => { }}>
           Reset
         </Button>
       </div>

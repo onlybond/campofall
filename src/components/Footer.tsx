@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 const Footer = () => {
   return (
     <footer className="w-full py-[5%] bg-[#131313]">
-      <div className="flex flex-col md:flex-row items-center justify-between mx-[7%]">
+      <div className="flex flex-col md:flex-row items-center justify-between md:mx-[10%] mx-[5%]">
         <div className="text-center md:text-left mb-10 md:mb-0">
           <p className="text-[36px] sm:text-[40px]">Do you have</p>
           <p className="text-[36px] sm:text-[40px]">any questions?</p>
@@ -22,14 +22,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="px-[5%] mt-[4%]">
+      <div className="px-[10%] mt-[4%]">
         <hr />
       </div>
-      <div className="pt-3 px-[5%]">
+      <div className="pt-3 px-[10%]">
         <p>Disclaimer +</p>
       </div>
-      <p className="text-xl mx-[5%] mt-8 md:mt-[5%]">Contacts</p>
-      <div className="flex flex-col md:flex-row items-center justify-between mx-[5%] mt-6 md:mt-5">
+      <p className="text-xl md:mx-[10%] mx-[5%] mt-8 md:mt-[5%]">Contacts</p>
+      <div className="flex flex-col md:flex-row items-center justify-between md:mx-[10%] mx-[5%] mt-6 md:mt-5">
         <div className="w-full md:w-1/3 mb-10 md:mb-0">
           <div className="flex justify-between">
             <div>
@@ -46,7 +46,7 @@ const Footer = () => {
             <p>info@campofall.com</p>
           </div>
         </div>
-        <div className="w-full md:w-6/12 flex flex-col items-center md:">
+        <div className="w-full md:w-6/12 flex flex-col items-center md:items-end md:">
           <div>
             <Image
               src="/assets/logo.png"

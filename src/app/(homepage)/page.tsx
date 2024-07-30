@@ -14,12 +14,12 @@ export default async function Home() {
         <div className="absolute inset-0 -z-[2] bg-[#252524] overflow-hidden">
           <Heroanimation />
         </div>
-        <div className="space-y-20 py-10">
-          <div className="tracking-widest space-y-10">
-            <h1 className="text-7xl font-thin">
-              <span className="font-normal">Designing</span> Together
+        <div className="space-y-14 sm:space-y-20 py-10">
+          <div className="space-y-4 sm:space-y-10">
+            <h1 className="text-[46px] sm:text-7xl font-thin">
+              <span className="font-normal">Design</span> Together
             </h1>
-            <h1 className="text-7xl font-thin">
+            <h1 className="text-5xl sm:text-7xl font-thin">
               <span className="font-normal">Thrive</span> in the{" "}
               <span
                 className="font-bold text-transparent"
@@ -43,20 +43,19 @@ export default async function Home() {
           </div>
           <div className="text-2xl font-extralight">
             <p className="text-primary">
-              Connect, collaborate, and find the resources you need to elevate
+              Connect, collaborate, and find the resources you need to elevate your projects.
             </p>
-            <p className="text-primary">your projects.</p>
           </div>
         </div>
       </div>
       <Suspense fallback={<div className="w-screen h-screen bg-[rgba(0,0,0,0,4)]]">Loading...</div>}>
         <div className="flex flex-col relative gap-5 py-6 my-16 h-fit w-full">
           <div className="flex gap-y-4 items-center w-full justify-between">
-            <h1 className="text-6xl font-thin">
-              <span className="font-semibold">Resource</span> Links
-            </h1>
+            <div className="sm:text-6xl font-thin text-5xl flex justify-center items-center w-full sm:justify-start ml-[3%]">
+              <span className="font-semibold">Resource</span>&nbsp;Links
+            </div>
           </div>
-          <Filters />
+
           <ResourcesPage />
         </div>
       </Suspense>
