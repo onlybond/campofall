@@ -30,6 +30,7 @@ export default function RootLayout({
             <div className="flex">
               {children}
             </div>
+            <Analytics/>
           </ToastProvider>
           <Footer/>
         </ThemeProvider>
